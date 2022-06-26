@@ -1,0 +1,21 @@
+.popup {
+    border-radius: 25px;
+}
+
+@media screen and (max-width: 1140px) {
+    .popup {
+        
+    }
+}
+
+@media screen and (max-width: 984px) {
+    .popup {
+        
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .popup {
+        
+    }
+}

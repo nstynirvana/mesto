@@ -1,0 +1,9 @@
+.popup__like-button {
+    
+}
+
+@media screen and (max-width: 586px) {
+    .popup__like-button {
+       
+    }
+}

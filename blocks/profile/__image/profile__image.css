@@ -1,0 +1,24 @@
+.profile__image {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__image{
+        /* width: 440px; */
+        /* height: 440px; */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile__image {
+        /* width: 340px; */
+        /* height: 340px; */
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile__image {
+        /* width: 320px; */
+        /* height: 320px; */
+    }
+}
