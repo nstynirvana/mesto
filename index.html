@@ -12,7 +12,7 @@
 
     <title>Место</title>
 
-    <!-- <style>*,*::before,*::after {outline: 1px solid red}</style> -->
+    <!-- <style> *, *::before,*::after {    outline: 1px solid red }</style> -->
 
 </head>
 
@@ -20,24 +20,24 @@
 
     <header class="header">
         <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
+        <hr class="header__line">
     </header>
 
     <main class="content">
 
         <section class="profile">
-            <div>
+            <div class="profile__person">
                 <img class="profile__image" src="./images/profile-cousteau.jpg" alt="Портрет Жака-Ив Кусто">
                 <div class="profile__info">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <div class="profile__edit">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__edit-button" name="edit" value="edit"></button>
+                    </div>
                     <p class="profile__subtitle">Исследователь океана</p>
-                    <button class="profile__edit-button" name="edit" value="edit">
-                        <img src="./images/profile-button.svg" alt="Карандаш">
-                    </button>
+
                 </div>
             </div>
-            <button class="profile__add-button" name="add" value="add">
-                <img src="./images/profile-button1.svg" alt="Плюс">
-            </button>
+            <button class="profile__add-button" name="add" value="add"></button>
         </section>
 
         <section class="popups">
