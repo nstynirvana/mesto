@@ -1,5 +1,6 @@
 .popup {
-    border-radius: 25px;
+    background-color: white;
+    border-radius: 15px;
 }
 
 @media screen and (max-width: 1140px) {

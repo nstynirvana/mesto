@@ -1,5 +1,7 @@
 .popup__info {
-    
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 15px 31px 21px;
 }
 
 @media screen and (max-width: 586px) {

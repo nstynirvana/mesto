@@ -1,13 +1,10 @@
 .popups {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: repeat(3, 1fr); */
-    gap: ;
-    width: ;
-    /* height: 671px; */
+    gap: 20px 17px;
     max-width: 100%;
     max-height: 100%;
-    /* margin: 0 auto 92px; */
+    margin: 51px auto 0;
 }
 
 @media screen and (max-width: 1140px) {
