@@ -1,16 +1,15 @@
 .footer {
-   height: 18px;
-   margin-top: 66px;
+    height: 18px;
+    margin: 66px 200px 0 200px;
 }
 
 @media screen and (max-width: 984px) {
-    .footer {
-        
-    }
+    .footer {}
 }
 
 @media screen and (max-width: 586px) {
     .footer {
-        
+        height: 14px;
+        margin: 48px 19px 0;
     }
 }

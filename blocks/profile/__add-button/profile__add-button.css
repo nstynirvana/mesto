@@ -4,10 +4,17 @@
     border-width: 2px;
     background-color: black;
     align-self: center;
+    margin-left: auto;
     padding: 0;
     background: url(../../../images/profile-button1.svg) no-repeat center;
+    background-size: 22px;
+    border-radius: 2px;
 }
 
 @media screen and (max-width: 568px) {
-    .profile__add-button {}
+    .profile__add-button {
+    margin: 36px auto 0;
+    width: 100%;
+    background-size: 16px;
+    }
 }

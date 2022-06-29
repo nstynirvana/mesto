@@ -3,26 +3,22 @@
     height: 24px;
     width: 24px;
     border-width: 1px;
-    margin-left: 18px;
-    align-self: flex-end;
     background: url(../../../images/profile-button.svg) no-repeat center;
 }
 
 
 @media screen and (max-width: 1024px) {
-    .profile__edit-button {
-
-    }
+    .profile__edit-button {}
 }
 
 @media screen and (max-width: 984px) {
-    .profile__edit-button {
-       
-    }
+    .profile__edit-button {}
 }
 
 @media screen and (max-width: 568px) {
     .profile__edit-button {
-        
+        height: 18px;
+        width: 18px;
+        margin-left: 10px;
     }
 }

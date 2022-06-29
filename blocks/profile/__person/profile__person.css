@@ -1,22 +1,19 @@
 .profile__person {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 @media screen and (max-width: 1140px) {
-  .profile__person {
-    
-  }
+  .profile__person {}
 }
 
 @media screen and (max-width: 768px) {
-  .profile__person {
-    
-  }
+  .profile__person {}
 }
 
 @media screen and (max-width: 568px) {
   .profile__person {
-    
+    margin: 0 auto;
   }
 }
