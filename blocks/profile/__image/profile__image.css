@@ -8,10 +8,9 @@
     background-size: cover;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1040px) {
     .profile__image {
-        /* width: 440px; */
-        /* height: 440px; */
+        margin: 0 auto;
     }
 }
 

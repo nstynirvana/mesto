@@ -4,17 +4,21 @@
   align-items: center;
 }
 
-@media screen and (max-width: 1140px) {
-  .profile {}
+@media screen and (max-width: 1040px) {
+  .profile {
+    flex-direction: column;
+  }
 }
 
-@media screen and (max-width: 768px) {
-  .profile {}
+@media screen and (max-width: 700px) {
+  .profile {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 @media screen and (max-width: 568px) {
   .profile {
     margin: 42px 19px 0;
-    flex-direction: column;
   }
 }
