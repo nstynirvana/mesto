@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="./pages/index.css">
 
+    <script src="./scripts/script.js"></script>
+
     <title>Место</title>
 
     <!-- <style> *, *::before,*::after {    outline: 1px solid red }</style> -->
@@ -19,7 +21,6 @@
 <body class="page">
 
 
-
     <header class="header">
         <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
         <hr class="header__line">
@@ -27,16 +28,14 @@
 
     <main class="content">
 
-        <div class="overlay"></div>
-
-        <div class="popup">
+        <div class="popup popup_opened">
             <button class="popup__close-button"></button>
             <div class="popup__content">
                 <h2 class="popup__heading">Редактировать профиль</h2>
                 <form>
                     <input class="popup__name" id="username" type="text" name="username" minlength="2" max="30"
                         value="Жак-Ив Кусто">
-                    <input class="popup__job" id="about" type="text" name="about" minlength="2" max="30"
+                    <input class="popup__job" id="aboutname" type="text" name="aboutname" minlength="2" max="30"
                         value="Исследователь океана">
                     <button id="submit" class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
@@ -61,48 +60,48 @@
             <article class="element">
                 <img class="element__image" src="./images/element-baikal.jpg" alt="Байкал">
                 <div class="element__info">
-                    <h2 class="element__title">Карачаевск</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Байкал</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
 
             <article class="element">
                 <img class="element__image" src="./images/element-gumbashi.jpg" alt="Перевал Гумбаши">
                 <div class="element__info">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Перевал Гумбаши</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
 
             <article class="element">
                 <img class="element__image" src="./images/element-kamchatka.jpg" alt="Камчатка">
                 <div class="element__info">
-                    <h2 class="element__title">Домбай</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Камчатка</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
 
             <article class="element">
                 <img class="element__image" src="./images/element-karelia.jpg" alt="Карелия">
                 <div class="element__info">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Карелия</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
 
             <article class="element">
                 <img class="element__image" src="./images/element-nurgush.jpg" alt="Хребет Нургуш">
                 <div class="element__info">
-                    <h2 class="element__title">Домбай</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Хребет Нургуш</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
 
             <article class="element">
                 <img class="element__image" src="./images/element-sochi.jpg" alt="Красная поляна">
                 <div class="element__info">
-                    <h2 class="element__title">Карачаево-Ч...</h2>
-                    <button class="element__like-button" name="like" value="like"></button>
+                    <h2 class="element__title">Красная поляна</h2>
+                    <button class="element__like-button element__like-button_active" name="like" value="like"></button>
                 </div>
             </article>
         </section>

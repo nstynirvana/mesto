@@ -12,6 +12,13 @@
     color: #FFFFFF;
 }
 
+.popup__submit-button:hover {
+    background-color: #313131;
+    border-color: #313131;
+    opacity: 0.8;
+    transition: 1s;
+}
+
 @media screen and (max-width: 568px) {
     .popup__submit-button {
         height: 46px;

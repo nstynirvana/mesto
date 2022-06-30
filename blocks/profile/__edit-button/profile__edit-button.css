@@ -6,6 +6,11 @@
     background: url(../../../images/profile-button.svg) no-repeat center;
 }
 
+.popup__edit-button:hover {
+    border-color: #313131;
+    opacity: 0.8;
+    transition: 1s;
+}
 
 @media screen and (max-width: 1040px) {
     .profile__edit-button {

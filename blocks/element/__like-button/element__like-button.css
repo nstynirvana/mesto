@@ -6,3 +6,9 @@
     border: 0;
     margin-top: 5px;
 }
+
+.element__like-button:hover {
+    background: url(../../../images/element-button-hover.svg) no-repeat center;
+    opacity: 0.8;
+    transition: 1s;
+}
