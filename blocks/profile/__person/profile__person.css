@@ -9,13 +9,3 @@
     margin: 0 auto;
   }
 }
-
-@media screen and (max-width: 768px) {
-  .profile__person {}
-}
-
-@media screen and (max-width: 568px) {
-  .profile__person {
-    
-  }
-}

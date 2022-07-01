@@ -2,21 +2,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-@media screen and (max-width: 1140px) {
-  .profile__edit {
-    
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .profile__edit {
-    
-  }
-}
-
-@media screen and (max-width: 568px) {
-  .profile__edit {
-    
-  }
-}

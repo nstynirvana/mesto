@@ -14,13 +14,6 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .profile__image {
-        /* width: 340px; */
-        /* height: 340px; */
-    }
-}
-
 @media screen and (max-width: 568px) {
     .profile__image {
         margin: 0 auto;
