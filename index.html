@@ -10,8 +10,6 @@
 
     <link rel="stylesheet" href="./pages/index.css">
 
-    <script src="./scripts/script.js"></script>
-
     <title>Место</title>
 
     <!-- <style> *, *::before,*::after {    outline: 1px solid red }</style> -->
@@ -20,7 +18,6 @@
 
 <body class="page">
 
-
     <header class="header">
         <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
         <hr class="header__line">
@@ -28,15 +25,15 @@
 
     <main class="content">
 
-        <div class="popup popup_opened">
-            <button class="popup__close-button"></button>
+        <div class="popup">
             <div class="popup__content">
+                <button class="popup__close-button"></button>
                 <h2 class="popup__heading">Редактировать профиль</h2>
-                <form>
-                    <input class="popup__name" id="username" type="text" name="username" minlength="2" max="30"
-                        value="Жак-Ив Кусто">
-                    <input class="popup__job" id="aboutname" type="text" name="aboutname" minlength="2" max="30"
-                        value="Исследователь океана">
+                <form class="form">
+                    <input class="popup__name" id="form" type="text" name="username" minlength="2" max="12"
+                        value="">
+                    <input class="popup__job" id="form" type="text" name="aboutname" minlength="2" max="30"
+                        value="">
                     <button id="submit" class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -111,6 +108,8 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+
+    <script src="./scripts/script.js"></script>
 
 </body>
 

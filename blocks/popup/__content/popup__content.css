@@ -1,5 +1,5 @@
 .popup__content {
-    display: ;
+    position: absolute;
     background-color: #fff;
     width: 430px;
     min-height: 330px;

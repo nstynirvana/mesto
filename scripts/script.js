@@ -1,38 +1,35 @@
 const popup = document.querySelector('.popup');
-const openPopupButton = document.querySelector('.profile__edit-button');
-const closePopupButton = document.querySelector('.popup__close-button');
+const editPopupButton = document.querySelector('.profile__edit-button');
+const closePopupButton = popup.querySelector('.popup__close-button');
+const submitPopupButton = document.querySelector('.popup__submit-button');
+const formElement = popup.querySelector('.form');
+const nameInput = formElement.querySelector('.popup__name');
+const jobInput = formElement.querySelector('.popup__job');
+const title = document.querySelector('.profile__title');
+const subtitle = document.querySelector('.profile__subtitle');
 
-function openPopupButton(open) {
-    // тело функции
-    if {
-        // esli najat profile__edit-button, to 
-    }
-  } 
+editPopupButton.addEventListener('click', openPopup);
+closePopupButton.addEventListener('click', closePopup);
 
+function openPopup() {
+  popup.classList.add('popup_opened');
+  nameInput.value = title.textContent;
+  jobInput.value = subtitle.textContent;
+}
 
-const username = popupContent.querySelector('.popup__name');
-const aboutname = popupContent.querySelector('.popup__job');
+function closePopup() {
+  popup.classList.remove('popup_opened');
+}
 
-// zdes doljno bit ne name function a ee znachenie - value
+submitPopupButton.addEventListener('click', closePopup);
 
-function username(value ili popup__name) {
-    // тело функции
-    // eto znachenie dolchno go v pole block profile - profile__title
-    if {
-        a cho zdes
-    }
-    // vozvrashaemoe znachenie
-    let name = value ili popup__name;
-    return = name;
-  } 
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  
+  title.textContent = nameInput.value;
+  subtitle.textContent = jobInput.value;
 
-function aboutname(value ili popup__job) {
-    // тело функции
-    // eto znachenie dolchno go v pole block profile - profile__subtitle
-    if {
+  closePopup();
+}
 
-    }
-    // vozvrashaemoe znachenie
-    let job = value ili popup__name;
-    return = job;
-  } 
+formElement.addEventListener('submit', formSubmitHandler);
