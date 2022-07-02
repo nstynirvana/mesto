@@ -4,7 +4,6 @@
     border: 2px solid #FFFFFF;
     background-color: black;
     align-self: center;
-
     margin-left: auto;
     padding: 0;
     background: url(../../../images/profile-add-button.svg) no-repeat center;
@@ -14,9 +13,7 @@
 }
 
 .profile__add-button:hover {
-    background: url(../../../images/profile-add-button-hover.svg) no-repeat center;
-    border-color: #313131;
-    opacity: 0.8;
+    opacity: 0.6;
     transition: 1s;
 }
 

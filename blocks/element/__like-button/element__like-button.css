@@ -10,7 +10,6 @@
 }
 
 .element__like-button:hover {
-    background: url(../../../images/element-button-hover.svg) no-repeat center;
-    opacity: 0.8;
+    opacity: 0.5;
     transition: 1s;
 }

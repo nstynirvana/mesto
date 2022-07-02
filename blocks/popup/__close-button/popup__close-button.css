@@ -10,8 +10,7 @@
 }
 
 .popup__close-button:hover {
-    background: url(../../../images/popup-close-button-hover.svg) no-repeat center;
-    opacity: 0.8;
+    opacity: 0.6;
     transition: 1s;
 }
 
