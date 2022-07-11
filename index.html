@@ -22,15 +22,34 @@
         <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
     </header>
 
-    <div class="popup">
+    <div class="popup popup_edit">
         <div class="popup__content">
-            <button type="button" class="popup__close-button"></button>
+            <button type="button" class="popup__close-button popup__close-button_edit"></button>
             <h2 class="popup__heading">Редактировать профиль</h2>
+            <form name="form" class="form">
+                <input class="popup__text popup__text_type_title" id="username" type="text" name="username" value="">
+                <input class="popup__text popup__text_type_image" id="aboutname" type="text" name="aboutname" value="">
+                <button id="submit" class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_add">
+        <div class="popup__content">
+            <button type="button" class="popup__close-button popup__close-button_add"></button>
+            <h2 class="popup__heading">Новое место</h2>
             <form name="form" class="form">
                 <input class="popup__text popup__text_type_name" id="username" type="text" name="username" value="">
                 <input class="popup__text popup__text_type_job" id="aboutname" type="text" name="aboutname" value="">
-                <button id="submit" class="popup__submit-button" type="submit">Сохранить</button>
+                <button id="submit" class="popup__submit-button" type="submit">Создать</button>
             </form>
+        </div>
+    </div>
+
+    <div class="popup popup_visual">
+        <div class="popup__review">
+            <button type="button" class="popup__close-button"></button>
+            <img class="popup__image">
         </div>
     </div>
 
@@ -51,6 +70,7 @@
         <section class="elements">
             <div class="element">
                 <img class="element__image" src="./images/element-baikal.jpg" alt="Байкал">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Байкал</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
@@ -60,6 +80,7 @@
 
             <div class="element">
                 <img class="element__image" src="./images/element-gumbashi.jpg" alt="Перевал Гумбаши">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Перевал Гумбаши</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
@@ -69,6 +90,7 @@
 
             <div class="element">
                 <img class="element__image" src="./images/element-kamchatka.jpg" alt="Камчатка">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Камчатка</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
@@ -78,6 +100,7 @@
 
             <div class="element">
                 <img class="element__image" src="./images/element-karelia.jpg" alt="Карелия">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Карелия</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
@@ -87,6 +110,7 @@
 
             <div class="element">
                 <img class="element__image" src="./images/element-nurgush.jpg" alt="Хребет Нургуш">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Хребет Нургуш</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
@@ -96,6 +120,7 @@
 
             <div class="element">
                 <img class="element__image" src="./images/element-sochi.jpg" alt="Красная поляна">
+                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class="element__info">
                     <h2 class="element__title">Красная поляна</h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
