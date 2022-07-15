@@ -41,3 +41,5 @@
 @import url(../blocks/element/__delete-button/element__delete-button.css);
 
 @import url(../blocks/popup/__review/popup__review.css);
+
+@import url(../blocks/popup/__image/popup__image.css);
