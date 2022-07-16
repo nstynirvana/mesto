@@ -42,8 +42,8 @@ const linkInputElement = document.querySelector('.popup__text_type_image');
 
 function openPopupAdd() {
   popupAdd.classList.add('popup_opened');
-  cardTitle.value = "Название";
-  cardLink.value = "Ссылка на картинку";
+  nameInputElement.placeholder = "Название";
+  linkInputElement.placeholder = "Ссылка на картинку";
 }
 
 addPopupButton.addEventListener('click', openPopupAdd);
@@ -75,23 +75,6 @@ function formSubmitHandlerEdit(evt) {
 }
 
 userEditForm.addEventListener('submit', formSubmitHandlerEdit);
-
-// obrabotchik second popup
-function formSubmitHandlerAdd(evt) {
-  evt.preventDefault();
-  
-  const parameters = {
-    name: cardTitle.value,
-    link: cardLink.value
-  };
-
-  renderCard(parameters);
-  render();
-
-  closePopup(popupAdd);
-}
-
-cardCreateForm.addEventListener('submit', formSubmitHandlerAdd);
 
 // create New Card
 
@@ -158,3 +141,20 @@ function likeCard(event) {
   const myLikeBtn = event.target;
   myLikeBtn.classList.toggle('element__like-button_active');
 }
+
+// obrabotchik second popup
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+
+  const parameters = {
+    name: cardTitle.value,
+    link: cardLink.value
+  };
+
+  renderCard(parameters);
+  render();
+
+  closePopup(popupAdd);
+}
+
+cardCreateForm.addEventListener('submit', formSubmitHandlerAdd);
