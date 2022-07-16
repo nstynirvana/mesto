@@ -1,15 +1,13 @@
 const popups = document.querySelectorAll('.popup'); // Список всех попапов
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
-const popupVisual = document.querySelector('.popup_visual');
+const popupVisual = document.querySelector('.popup-visual');
 
 const submitPopupButton = document.querySelector('.popup__submit-button');
 
 const formElements = document.querySelectorAll('.form');// Список всех форм на странице
 const userEditForm = document.querySelector('#userEditForm');
 const cardCreateForm = document.querySelector('#cardCreateForm');
-
-const deleteCardButton = document.querySelector('.element__delete-button');
 
 // openPopup
 const editPopupButton = document.querySelector('.profile__edit-button');
@@ -32,8 +30,6 @@ function openPopupEdit() {
 }
 
 editPopupButton.addEventListener('click', openPopupEdit);
-
-////////////////////////////////////////////////////////////////
 
 const cardTitle = document.querySelector('.element__title');
 const cardLink = document.querySelector('.element__image');
@@ -120,15 +116,36 @@ function render() {
 }
 
 function renderCard({ name, link }) {
+
   const cardsElement = cardsTemplate
     .querySelector(".element")
     .cloneNode(true);
+    
   cardsElement.querySelector(".element__title").textContent = name;
   cardsElement.querySelector(".element__image").setAttribute('src', link);
-
+  
   cardsContainer.prepend(cardsElement);
+
 }
 render();
+
+// obrabotchik second popup
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+
+  const parameters = {
+    name: nameInputElement.value,
+    link: linkInputElement.value
+    
+  };
+
+  renderCard(parameters);
+
+  closePopup(popupAdd);
+
+}
+
+cardCreateForm.addEventListener('submit', formSubmitHandlerAdd);
 
 // button like
 const likeButtons = document.querySelectorAll('.element__like-button');
@@ -142,19 +159,24 @@ function likeCard(event) {
   myLikeBtn.classList.toggle('element__like-button_active');
 }
 
-// obrabotchik second popup
-function formSubmitHandlerAdd(evt) {
-  evt.preventDefault();
-
-  const parameters = {
-    name: cardTitle.value,
-    link: cardLink.value
-  };
-
-  renderCard(parameters);
-  render();
-
-  closePopup(popupAdd);
+//  open Image
+function openPopupVisual() {
+  popupVisual.classList.add('popup-visual_opened');
 }
 
-cardCreateForm.addEventListener('submit', formSubmitHandlerAdd);
+const visualPopupImage = ;
+
+visualPopupImage.addEventListener('click', openPopupVisual);
+
+// delete card
+
+const deleteButtons = document.querySelectorAll('.element__delete-button');
+
+deleteButtons.forEach(btn => {
+  btn.addEventListener('click', deleteCard);
+})
+
+function deleteCard(event) {
+  const deleteBtn = event.target.closest;
+  deleteBtn.classList.remove('.element');
+}
