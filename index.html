@@ -27,8 +27,8 @@
             <button id="editBtn" type="button" class="popup__close-button popup__close-button_edit"></button>
             <h2 class="popup__heading">Редактировать профиль</h2>
             <form id="userEditForm" name="form" class="form">
-                <input class="popup__text popup__text_type_title" id="username" type="text" name="username" value="">
-                <input class="popup__text popup__text_type_image" id="aboutname" type="text" name="aboutname" value="">
+                <input class="popup__text popup__text_type_name" id="username" type="text" name="username" value="">
+                <input class="popup__text popup__text_type_job" id="aboutname" type="text" name="aboutname" value="">
                 <button id="save" class="popup__submit-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -39,8 +39,8 @@
             <button type="button" class="popup__close-button popup__close-button_add"></button>
             <h2 class="popup__heading">Новое место</h2>
             <form id="cardCreateForm" name="form" class="form">
-                <input class="popup__text popup__text_type_name" id="username" type="text" name="username" value="">
-                <input class="popup__text popup__text_type_job" id="aboutname" type="text" name="aboutname" value="">
+                <input class="popup__text popup__text_type_title " id="username" type="text" name="username" value="">
+                <input class="popup__text popup__text_type_image" id="aboutname" type="text" name="aboutname" value="">
                 <button id="create" class="popup__submit-button" type="submit">Создать</button>
             </form>
         </div>
@@ -66,82 +66,21 @@
             </div>
             <button type="button" class="profile__add-button" name="add" value="add"></button>
         </section>
-
+         
         <section class="elements">
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-baikal.jpg" alt="Байкал">
+            <template id="template-element" >
+                <div class="element">
+                <img class="element__image">
                 <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Байкал</h2>
+                <div class=" element__info">
+                    <h2 class="element__title"></h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
                         value="like"></button>
                 </div>
-            </div>
-
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-gumbashi.jpg" alt="Перевал Гумбаши">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Перевал Гумбаши</h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-kamchatka.jpg" alt="Камчатка">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Камчатка</h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-karelia.jpg" alt="Карелия">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Карелия</h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-nurgush.jpg" alt="Хребет Нургуш">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Хребет Нургуш</h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-
-            <div class="element">
-                <img value="" class="element__image" src="./images/element-sochi.jpg" alt="Красная поляна">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class="element__info">
-                    <h2 value="" class="element__title">Красная поляна</h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-        </section>
-
-        <template id="template-element">
-            <div class="element">
-                <div value="" class="element__image" style="background-image: url();">
-                    <button type="button" class="element__delete-button" name="delete" value="delete""></button>
-                  </div>
-                  <div class=" element__info">
-                        <h2 class="element__title"></h2>
-                        <button type="button" class="element__like-button element__like-button_active" name="like"
-                            value="like"></button>
-                </div>
-            </div>
-            </div>
+            </div>  
         </template>
+        </section>
+          
 
     </main>
 
