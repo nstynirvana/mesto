@@ -13,10 +13,6 @@ const cardCreateForm = document.querySelector('#cardCreateForm');
 const editPopupButton = document.querySelector('.profile__edit-button');
 const addPopupButton = document.querySelector('.profile__add-button');
 
-// function openPopup(popup) {
-//   popup.classList.add("popup_opened");
-// }
-
 const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 
@@ -159,14 +155,14 @@ function likeCard(event) {
   myLikeBtn.classList.toggle('element__like-button_active');
 }
 
-//  open Image
-function openPopupVisual() {
-  popupVisual.classList.add('popup-visual_opened');
-}
+// //  open Image
+// function openPopupVisual() {
+//   popupVisual.classList.add('popup-visual_opened');
+// }
 
-const visualPopupImage = ;
+// const visualPopupImage = ;
 
-visualPopupImage.addEventListener('click', openPopupVisual);
+// visualPopupImage.addEventListener('click', openPopupVisual);
 
 // delete card
 
