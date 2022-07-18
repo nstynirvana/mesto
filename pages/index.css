@@ -40,9 +40,7 @@
 @import url(../blocks/element/__delete-button/element__delete-button.css);
 
 @import url(../blocks/popup-visual/popup-visual.css);
-@import url(../blocks/popup-visual/__close-button/popup-visual__close-button.css);
 @import url(../blocks/popup-visual/__image/popup-visual__image.css);
 @import url(../blocks/popup-visual/__review/popup-visual__review.css);
-@import url(../blocks/popup-visual/_opened/popup-visual_opened.css);
 
 @import url(../blocks/popup/_opened/popup_opened.css);
