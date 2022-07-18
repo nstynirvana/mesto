@@ -2,9 +2,9 @@
     background: url(../../../images/popup-close-button.svg) no-repeat center;
     width: 32px;
     height: 32px;
-    position: relative;
-    top: -80px;
-    right: -408px;
+    position: absolute;
+    top: -40px;
+    right: -40px;
     border: 0;
     cursor: pointer;
 }
