@@ -2,12 +2,13 @@
     background: url(../../../images/popup-close-button.svg) no-repeat center;
     width: 32px;
     height: 32px;
+    position: relative;
     top: -80px;
     right: -408px;
-    position: relative;
     border: 0;
     cursor: pointer;
 }
+
 
 .popup__close-button:hover {
     opacity: 0.6;

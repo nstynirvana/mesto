@@ -39,16 +39,16 @@
             <button type="button" class="popup__close-button popup__close-button_add"></button>
             <h2 class="popup__heading">Новое место</h2>
             <form id="cardCreateForm" name="form" class="form">
-                <input class="popup__text popup__text_type_title " id="username" type="text" name="username" value="">
-                <input class="popup__text popup__text_type_image" id="aboutname" type="text" name="aboutname" value="">
+                <input class="popup__text popup__text_type_title " id="place-name" type="text" name="place-name" value="">
+                <input class="popup__text popup__text_type_image" id="place-img-link" type="text" name="place-img-link" value="">
                 <button id="create" class="popup__submit-button" type="submit">Создать</button>
             </form>
         </div>
     </div>
 
-    <div class="popup-visual">
+    <div class="popup popup-visual">
         <div class="popup-visual__review">
-            <button type="button" class="popup-visual__close-button"></button>
+            <button type="button" class="popup__close-button"></button>
             <img src="#" alt="" class="popup-visual__image">
         </div>
     </div>
@@ -66,21 +66,21 @@
             </div>
             <button type="button" class="profile__add-button" name="add" value="add"></button>
         </section>
-         
+
         <section class="elements">
             <template id="template-element" >
                 <div class="element">
-                <img class="element__image">
+                <img class="element__image" alt="" src="">
                 <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class=" element__info">
                     <h2 class="element__title"></h2>
                     <button type="button" class="element__like-button element__like-button_active" name="like"
                         value="like"></button>
                 </div>
-            </div>  
+            </div>
         </template>
         </section>
-          
+
 
     </main>
 
