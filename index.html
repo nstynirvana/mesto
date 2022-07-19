@@ -24,31 +24,31 @@
 
     <div class="popup popup_edit">
         <div class="popup__content">
-            <button id="editBtn" type="button" class="popup__close-button popup__close-button_edit"></button>
+            <button aria-label="Закрыть" id="editBtn" type="button" class="popup__close-button popup__close-button_edit"></button>
             <h2 class="popup__heading">Редактировать профиль</h2>
             <form id="userEditForm" name="form" class="form">
-                <input class="popup__text popup__text_type_name" id="username" type="text" name="username" value="">
-                <input class="popup__text popup__text_type_job" id="aboutname" type="text" name="aboutname" value="">
-                <button id="save" class="popup__submit-button" type="submit">Сохранить</button>
+                <input class="popup__text popup__text_type_name" id="username" type="text" placeholder = "Жак-Ив Кусто" name="username" >
+                <input class="popup__text popup__text_type_job" id="aboutname" type="text" placeholder = "Исследователь океана" name="aboutname" >
+                <button aria-label="Сохранить" id="save" class="popup__submit-button" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
 
     <div class="popup popup_add">
         <div class="popup__content">
-            <button type="button" class="popup__close-button popup__close-button_add"></button>
+            <button aria-label="Закрыть" type="button" class="popup__close-button popup__close-button_add"></button>
             <h2 class="popup__heading">Новое место</h2>
             <form id="cardCreateForm" name="form" class="form">
-                <input class="popup__text popup__text_type_title " id="place-name" type="text" name="place-name" value="">
-                <input class="popup__text popup__text_type_image" id="place-img-link" type="text" name="place-img-link" value="">
-                <button id="create" class="popup__submit-button" type="submit">Создать</button>
+                <input class="popup__text popup__text_type_title " required id="place-name" type="text" name="place-name"  placeholder= "Название" value="">
+                <input class="popup__text popup__text_type_image" required id="place-img-link" type="url" name="place-img-link" placeholder = "Ссылка на картинку" value="">
+                <button aria-label="Создать" id="create" class="popup__submit-button" type="submit">Создать</button>
             </form>
         </div>
     </div>
 
     <div class="popup popup-visual">
         <div class="popup-visual__review">
-            <button type="button" class="popup__close-button"></button>
+            <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
             <img src="#" alt="" class="popup-visual__image">
         </div>
     </div>
@@ -60,21 +60,21 @@
             <div class="profile__info">
                 <div class="profile__person">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button" name="edit" value="edit"></button>
+                    <button aria-label="Редактировать" type="button" class="profile__edit-button" name="edit" value="edit"></button>
                 </div>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <button type="button" class="profile__add-button" name="add" value="add"></button>
+            <button aria-label="Добавить" type="button" class="profile__add-button" name="add"></button>
         </section>
 
         <section class="elements">
             <template id="template-element" >
                 <div class="element">
-                <img class="element__image" alt="" src="#">
+                <img class="element__image" alt="name" src="#">
                 <button type="button" class="element__delete-button" name="delete" value="delete"></button>
                 <div class=" element__info">
                     <h2 class="element__title"></h2>
-                    <button type="button" class="element__like-button element__like-button_active" name="like"
+                    <button aria-label="Лайк" type="button" class="element__like-button" name="like"
                         value="like"></button>
                 </div>
             </div>
