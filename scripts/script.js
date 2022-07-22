@@ -19,6 +19,8 @@ const placeImgLinkInput = document.querySelector('.popup__text_type_image');
 const title = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 
+const imageText = document.querySelector('.popup-visual__text');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -87,6 +89,9 @@ function openPopupVisual(event) {
   const link = img.getAttribute('src');
   cardDetailPopupImage.setAttribute('src', link);
 
+  const imageText = popupVisual.querySelector('.popup-visual__text');
+  imageText.textContent = event.target.getAttribute('alt');
+
   openPopup(popupVisual);
 }
 
@@ -147,7 +152,9 @@ function createCard({ name, link }) {
   
 
   img.setAttribute('src', link);
+  img.setAttribute('alt', name);
   img.addEventListener('click', openPopupVisual);
+ 
 
   likeButton.addEventListener('click', likeCard);
   deleteButton.addEventListener('click', deleteCard);

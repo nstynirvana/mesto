@@ -44,3 +44,5 @@
 @import url(../blocks/popup-visual/__review/popup-visual__review.css);
 
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/popup-visual/__text/popup-visual__text.css);
