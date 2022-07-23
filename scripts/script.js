@@ -19,7 +19,6 @@ const placeImgLinkInput = document.querySelector('.popup__text_type_image');
 const title = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 
-const imageText = document.querySelector('.popup-visual__text');
 
 const initialCards = [
   {
@@ -87,7 +86,10 @@ function openPopupAdd() {
 function openPopupVisual(event) {
   const img = event.target;
   const link = img.getAttribute('src');
+  const name = event.target.getAttribute('alt');
   cardDetailPopupImage.setAttribute('src', link);
+  cardDetailPopupImage.setAttribute('alt', name);
+
 
   const imageText = popupVisual.querySelector('.popup-visual__text');
   imageText.textContent = event.target.getAttribute('alt');
