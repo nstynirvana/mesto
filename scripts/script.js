@@ -62,6 +62,12 @@ popups.forEach(popup => {
       closePopup(popup);
     }
   });
+  popup.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+  popup.addEventListener('click', closePopupOverlay);
 });
 
 // Изначальная отрисовка списка карточек
@@ -73,6 +79,9 @@ initialCards.forEach(renderCard);
 // Открытие попапов и инциализация значений
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  const input = document.querySelector('.popup__text');
+  const span = input.nextElementSibling;
+  span.textContent = '';
 }
 
 function openPopupEdit() {
@@ -101,6 +110,13 @@ function openPopupVisual(event) {
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+function closePopupOverlay(event,popup) {
+  if (event.target !== event.currentTarget) {
+    return
+  }
+  closePopup(popup);
 }
 
 // Действия с карточкой
@@ -167,4 +183,5 @@ function createCard({ name, link }) {
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
   cardsContainer.prepend(cardElement);
-}; 
+};
+

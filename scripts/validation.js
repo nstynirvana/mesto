@@ -1,61 +1,9 @@
-// const showInputError = (formElement, inputElement, errorMessage) => {
-//     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//     inputElement.classList.add('form__error');
-//     errorElement.textContent = errorMessage;
-//     errorElement.classList.add('form__error_active');
-// };
-//
-// const hideInputError = (formElement, inputElement) => {
-//     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//     inputElement.classList.remove('form__error');
-//     errorElement.classList.remove('form__error_active');
-//     errorElement.textContent = '';
-// };
-//
-// const checkInputValidity = (formElement, inputElement) => {
-//     if (!inputElement.validity.valid) {
-//         showInputError(formElement, inputElement, inputElement.validationMessage);
-//     } else {
-//         hideInputError(formElement, inputElement);
-//     }
-// };
-//
-// const setEventListeners = (formElement) => {
-//     const inputList = Array.from(formElement.querySelectorAll('.popup__text'));
-//     inputList.forEach((inputElement) => {
-//         inputElement.addEventListener('input', function () {
-//             checkInputValidity(formElement, inputElement);
-//         });
-//     });
-// };
-//
-// const enableValidation = (formElement) => {
-//     const formList = Array.from(formElement.querySelectorAll('.form'));
-//     formList.forEach((formElement) => {
-//         formElement.addEventListener('submit',  (evt) => {
-//             evt.preventDefault();
-//             setEventListeners(formElement);
-//         });
-//     });
-// };
-//
-// enableValidation();
-const formEdit = {
-    form: '.form[id="userEditForm"]',
-    button: '.popup__submit-button',
-    buttonInvalid: 'popup__submit-button_invalid'
-}
-
-const formAdd = {
-    form: '.form[id="cardCreateForm"]',
-    button: '.popup__submit-button',
-    buttonInvalid: 'popup__submit-button_invalid'
-}
-
 function enableValidation(selectors) {
-    const form = document.querySelector(selectors.form);
-    form.addEventListener('submit',handleFormSubmit);
-    form.addEventListener('input', (event) => handleFormInput(event,selectors));
+    const forms = document.querySelectorAll(selectors.form);
+    forms.forEach((form) => {
+      form.addEventListener('submit',handleFormSubmit);
+      form.addEventListener('input', (event) => handleFormInput(event,selectors));
+    });
 }
 
 function handleFormSubmit(event) {
@@ -77,25 +25,11 @@ function handleFormInput(event, selectors) {
     setCustomError(input);
     showInputError(input);
     setSubmitButtonState(form, selectors);
-
 }
 
 function setCustomError(input) {
     const validity = input.validity;
     input.setCustomValidity('');
-
-    if (validity.valueMissing) {
-        input.setCustomValidity('Пустое поле не допускается');
-    }
-    if (validity.tooShort) {
-        input.setCustomValidity('Введите минимум 2 символа');
-    }
-    if (validity.tooLong){
-        input.setCustomValidity('Превышено максимальное значение символов');
-    }
-    if (validity.typeMismatch && input.type === 'url') {
-        input.setCustomValidity('Введите ссылку');
-    }
 }
 
 function showInputError(input) {
@@ -104,17 +38,23 @@ function showInputError(input) {
 }
 
 function setSubmitButtonState(form, selectors) {
-    const button = form.querySelector(selectors.button)
+    const button = form.querySelector(selectors.button);
+    // const text = form.querySelector(selectors.text);
     const isValid = form.checkValidity();
     if(isValid) {
       button.removeAttribute('disabled');
       button.classList.remove(selectors.buttonInvalid);
-      // button.classList.add('popup__submit-button_valid');
+      // text.classList.add(selectors.text);
     } else {
         button.setAttribute('disabled','true');
-        // button.classList.remove('popup__submit-button_valid');
+        // text.classList.remove(selectors.text);
         button.classList.add(selectors.buttonInvalid);
     }
 }
-enableValidation(formEdit);
-enableValidation(formAdd);
+
+enableValidation({
+    form: '.form',
+    button: '.popup__submit-button',
+    buttonInvalid: 'popup__submit-button_invalid',
+    text: 'popup__text_invalid'
+});
