@@ -42,8 +42,16 @@
 // enableValidation();
 const formEdit = {
     form: '.form[id="userEditForm"]',
-    button: '.popup__submit-button'
+    button: '.popup__submit-button',
+    buttonInvalid: 'popup__submit-button_invalid'
 }
+
+const formAdd = {
+    form: '.form[id="cardCreateForm"]',
+    button: '.popup__submit-button',
+    buttonInvalid: 'popup__submit-button_invalid'
+}
+
 function enableValidation(selectors) {
     const form = document.querySelector(selectors.form);
     form.addEventListener('submit',handleFormSubmit);
@@ -100,12 +108,13 @@ function setSubmitButtonState(form, selectors) {
     const isValid = form.checkValidity();
     if(isValid) {
       button.removeAttribute('disabled');
-      button.classList.remove('.popup__submit-button_invalid');
-      button.classList.add('.popup__submit-button_valid');
+      button.classList.remove(selectors.buttonInvalid);
+      // button.classList.add('popup__submit-button_valid');
     } else {
         button.setAttribute('disabled','true');
-        button.classList.remove('popup__submit-button_valid');
-        button.classList.add('popup__submit-button_invalid');
+        // button.classList.remove('popup__submit-button_valid');
+        button.classList.add(selectors.buttonInvalid);
     }
 }
 enableValidation(formEdit);
+enableValidation(formAdd);
