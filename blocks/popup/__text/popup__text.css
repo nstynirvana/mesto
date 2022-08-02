@@ -9,18 +9,18 @@
     line-height: 17px;
     box-sizing: border-box;
     padding: 0 0 13px;
-    margin-bottom: 48px;
+    margin-bottom: 5px;
 }
 
-.popup__text:last-child {
-    margin-bottom: 30px;
-}
+/*.popup__text:last-child {*/
+/*    margin-bottom: 30px;*/
+/*}*/
 
-@media screen and (max-width: 568px) {
-    .popup__text:last-child {
-        margin-bottom: 45px;
-    }
-}
+/*@media screen and (max-width: 568px) {*/
+/*    .popup__text:last-child {*/
+/*        margin-bottom: 45px;*/
+/*    }*/
+/*}*/
 
 .popup__text:invalid {
     border-bottom: 1px solid red;

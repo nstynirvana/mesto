@@ -4,12 +4,14 @@ const popupAdd = document.querySelector('.popup_add');
 const popupVisual = document.querySelector('.popup-visual');
 const cardDetailPopupImage = document.querySelector('.popup-visual__image');
 
-const editPopupButton = document.querySelector('.profile__edit-button');
-const addPopupButton = document.querySelector('.profile__add-button');
+const buttonOpenEditProfilePopup = document.querySelector('.profile__edit-button');
+const buttonOpenAddProfilePopup = document.querySelector('.profile__add-button');
 
 // Формы
 const userEditForm = document.querySelector('#userEditForm');
 const cardCreateForm = document.querySelector('#cardCreateForm');
+
+const imageText = popupVisual.querySelector('.popup-visual__text');
 
 const userNameInput = document.querySelector('.popup__text_type_name');
 const userJobInput = document.querySelector('.popup__text_type_job');
@@ -48,11 +50,11 @@ const initialCards = [
 ];
 
 // Добавление необходимых слушателей при загрузке страницы
-editPopupButton.addEventListener('click', openPopupEdit);
-addPopupButton.addEventListener('click', openPopupAdd);
+buttonOpenEditProfilePopup.addEventListener('click', openPopupEdit);
+buttonOpenAddProfilePopup.addEventListener('click', openPopupAdd);
 
-cardCreateForm.addEventListener('submit', formSubmitHandlerAdd);
-userEditForm.addEventListener('submit', formSubmitHandlerEdit);
+cardCreateForm.addEventListener('submit', submitHandlerFormAdd);
+userEditForm.addEventListener('submit', submitHandlerFormEdit);
 
 const popups = document.querySelectorAll('.popup'); // Список всех попапов
 // Добавление слушателей для кнопок "закрыть"
@@ -67,12 +69,14 @@ popups.forEach(popup => {
         closePopup(popup);
       }
   });
-  document.addEventListener('keydown',(evt,popup) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  });
 })
+
+function ClosePopupEsc(evt,popup) {
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
+}
+
 
 // Изначальная отрисовка списка карточек
 const cardsContainer = document.querySelector(".elements");
@@ -87,14 +91,17 @@ function openPopup(popup) {
   span.forEach((span) => {
     span.textContent = ''
   });
+  document.removeEventListener('keydown', ClosePopupEsc);
 }
 
 function openPopupEdit() {
   openPopup(popupEdit);
+  document.addEventListener('keydown', ClosePopupEsc);
 }
 
 function openPopupAdd() {
   openPopup(popupAdd);
+  document.addEventListener('keydown', ClosePopupEsc);
 }
 
 function openPopupVisual(event) {
@@ -104,11 +111,10 @@ function openPopupVisual(event) {
   cardDetailPopupImage.setAttribute('src', link);
   cardDetailPopupImage.setAttribute('alt', name);
 
-
-  const imageText = popupVisual.querySelector('.popup-visual__text');
   imageText.textContent = event.target.getAttribute('alt');
 
   openPopup(popupVisual);
+  document.addEventListener('keydown', ClosePopupEsc);
 }
 
 
@@ -117,6 +123,7 @@ function closePopup() {
   popups.forEach(popup => {
     popup.classList.remove('popup_opened');
   })
+  document.removeEventListener('keydown', ClosePopupEsc);
 }
 
 // Действия с карточкой
@@ -132,7 +139,7 @@ function deleteCard(event) {
 
 
 // Применение изменений из форм
-function formSubmitHandlerAdd(evt) {
+function submitHandlerFormAdd(evt) {
   evt.preventDefault();
 
   const cardData = {
@@ -147,7 +154,7 @@ function formSubmitHandlerAdd(evt) {
   evt.target.reset();
 }
 
-function formSubmitHandlerEdit(evt) {
+function submitHandlerFormEdit(evt) {
   evt.preventDefault();
 
   title.textContent = userNameInput.value;

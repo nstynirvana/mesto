@@ -48,6 +48,7 @@ function setSubmitButtonState(form, selectors) {
     }
 }
 
+
 enableValidation({
     form: '.form',
     button: '.popup__submit-button',
