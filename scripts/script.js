@@ -62,13 +62,17 @@ popups.forEach(popup => {
       closePopup(popup);
     }
   });
-  popup.addEventListener('keydown', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if(evt.target.classList.contains('popup_opened')) {
+        closePopup(popup);
+      }
+  });
+  document.addEventListener('keydown',(evt,popup) => {
     if (evt.key === "Escape") {
       closePopup(popup);
     }
   });
-  popup.addEventListener('click', closePopupOverlay);
-});
+})
 
 // Изначальная отрисовка списка карточек
 const cardsContainer = document.querySelector(".elements");
@@ -79,9 +83,10 @@ initialCards.forEach(renderCard);
 // Открытие попапов и инциализация значений
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  const input = document.querySelector('.popup__text');
-  const span = input.nextElementSibling;
-  span.textContent = '';
+  const span = Array.from(document.querySelectorAll('.error'));
+  span.forEach((span) => {
+    span.textContent = ''
+  });
 }
 
 function openPopupEdit() {
@@ -108,15 +113,10 @@ function openPopupVisual(event) {
 
 
 // Закрытие попапа
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-function closePopupOverlay(event,popup) {
-  if (event.target !== event.currentTarget) {
-    return
-  }
-  closePopup(popup);
+function closePopup() {
+  popups.forEach(popup => {
+    popup.classList.remove('popup_opened');
+  })
 }
 
 // Действия с карточкой
@@ -183,5 +183,5 @@ function createCard({ name, link }) {
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
   cardsContainer.prepend(cardElement);
-};
+}
 

@@ -11,11 +11,7 @@ function handleFormSubmit(event) {
     const form = event.currentTarget;
     const isValid = form.checkValidity();
     if(isValid) {
-      alert('Форма валидна');
       form.reset();
-    }
-    else {
-        alert('Форма не валидна');
     }
 }
 
@@ -28,7 +24,7 @@ function handleFormInput(event, selectors) {
 }
 
 function setCustomError(input) {
-    const validity = input.validity;
+    // const validity = input.validity;
     input.setCustomValidity('');
 }
 
@@ -55,6 +51,5 @@ function setSubmitButtonState(form, selectors) {
 enableValidation({
     form: '.form',
     button: '.popup__submit-button',
-    buttonInvalid: 'popup__submit-button_invalid',
-    text: 'popup__text_invalid'
+    buttonInvalid: 'popup__submit-button_invalid'
 });
