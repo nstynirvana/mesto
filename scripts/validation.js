@@ -35,22 +35,31 @@ function showInputError(input) {
 
 function setSubmitButtonState(form, selectors) {
     const button = form.querySelector(selectors.button);
-    // const text = form.querySelector(selectors.text);
     const isValid = form.checkValidity();
     if(isValid) {
       button.removeAttribute('disabled');
       button.classList.remove(selectors.buttonInvalid);
-      // text.classList.add(selectors.text);
     } else {
         button.setAttribute('disabled','true');
-        // text.classList.remove(selectors.text);
         button.classList.add(selectors.buttonInvalid);
     }
 }
+ function resetSpanError() {
+     const span = Array.from(document.querySelectorAll('.error'));
+     span.forEach((span) => {
+         span.textContent = ''
+     });
+ }
 
+ const selectors = {
+     form: '.form',
+     button: '.popup__submit-button',
+     buttonInvalid: 'popup__submit-button_invalid'
+ }
 
-enableValidation({
-    form: '.form',
-    button: '.popup__submit-button',
-    buttonInvalid: 'popup__submit-button_invalid'
-});
+ function handleButtonState(popup) {
+    const form = popup.querySelector('.form');
+    setSubmitButtonState(form,selectors);
+ }
+
+enableValidation(selectors);

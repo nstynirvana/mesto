@@ -71,9 +71,11 @@ popups.forEach(popup => {
   });
 })
 
-function ClosePopupEsc(evt,popup) {
-  if (evt.key === "Escape") {
-    closePopup(popup);
+function closePopupEsc(popup) {
+  return (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
   }
 }
 
@@ -87,21 +89,21 @@ initialCards.forEach(renderCard);
 // Открытие попапов и инциализация значений
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  const span = Array.from(document.querySelectorAll('.error'));
-  span.forEach((span) => {
-    span.textContent = ''
-  });
-  document.removeEventListener('keydown', ClosePopupEsc);
+  document.addEventListener('keydown', closePopupEsc(popup));
 }
 
 function openPopupEdit() {
   openPopup(popupEdit);
-  document.addEventListener('keydown', ClosePopupEsc);
+  handleButtonState(popupEdit);
+  // popupEdit.addEventListener('keydown', closePopupEsc);
+  resetSpanError();
 }
 
 function openPopupAdd() {
   openPopup(popupAdd);
-  document.addEventListener('keydown', ClosePopupEsc);
+  handleButtonState(popupAdd);
+  // popupAdd.addEventListener('keydown', closePopupEsc);
+  resetSpanError();
 }
 
 function openPopupVisual(event) {
@@ -114,16 +116,14 @@ function openPopupVisual(event) {
   imageText.textContent = event.target.getAttribute('alt');
 
   openPopup(popupVisual);
-  document.addEventListener('keydown', ClosePopupEsc);
+  // popupVisual.addEventListener('keydown', closePopupEsc);
 }
 
 
 // Закрытие попапа
-function closePopup() {
-  popups.forEach(popup => {
-    popup.classList.remove('popup_opened');
-  })
-  document.removeEventListener('keydown', ClosePopupEsc);
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc(popup));
 }
 
 // Действия с карточкой

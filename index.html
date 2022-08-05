@@ -37,17 +37,6 @@
         </section>
 
         <section class="elements">
-            <template id="template-element" >
-                <div class="element">
-                <img class="element__image" alt="name" src="#">
-                <button type="button" class="element__delete-button" name="delete" value="delete"></button>
-                <div class=" element__info">
-                    <h2 class="element__title"></h2>
-                    <button aria-label="Лайк" type="button" class="element__like-button" name="like"
-                        value="like"></button>
-                </div>
-            </div>
-        </template>
         </section>
 
     </main>
@@ -84,13 +73,25 @@
         </div>
     </div>
 
-    <div class="popup popup-visual">
+    <div class="popup popup-visual popup_open-image">
         <div class="popup-visual__review">
             <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
             <img src="#" alt="" class="popup-visual__image">
             <h2 class="popup-visual__text"></h2>
         </div>
     </div>
+
+    <template id="template-element" >
+        <div class="element">
+            <img class="element__image" alt="name" src="#">
+            <button type="button" class="element__delete-button" name="delete" value="delete"></button>
+            <div class=" element__info">
+                <h2 class="element__title"></h2>
+                <button aria-label="Лайк" type="button" class="element__like-button" name="like"
+                        value="like"></button>
+            </div>
+        </div>
+    </template>
 
     <script src="./scripts/script.js"></script>
     <script src="./scripts/validation.js"></script>

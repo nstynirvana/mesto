@@ -51,3 +51,4 @@
 @import url(../blocks/error/error.css);
 @import url(../blocks/popup/__text/_invalid/popup__text_invalid.css);
 @import url(../blocks/popup/__submit-button/_invalid/popup__submit-button_invalid.css);
+@import url(../blocks/popup/_open-image/popup_open-image.css);
