@@ -71,12 +71,11 @@ popups.forEach(popup => {
   });
 })
 
-function closePopupEsc(popup) {
-  return (evt) => {
+function closePopupEsc(evt) {
     if (evt.key === "Escape") {
-      closePopup(popup);
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
     }
-  }
 }
 
 
@@ -89,13 +88,13 @@ initialCards.forEach(renderCard);
 // Открытие попапов и инциализация значений
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc(popup));
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function openPopupEdit() {
+  setInputEditFormValue();
   openPopup(popupEdit);
   handleButtonState(popupEdit);
-  // popupEdit.addEventListener('keydown', closePopupEsc);
   resetSpanError();
 }
 
@@ -116,14 +115,13 @@ function openPopupVisual(event) {
   imageText.textContent = event.target.getAttribute('alt');
 
   openPopup(popupVisual);
-  // popupVisual.addEventListener('keydown', closePopupEsc);
 }
 
 
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc(popup));
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 // Действия с карточкой
@@ -152,6 +150,11 @@ function submitHandlerFormAdd(evt) {
   closePopup(popupAdd);
 
   evt.target.reset();
+}
+
+function setInputEditFormValue() {
+  userNameInput.value = title.textContent;
+  userJobInput.value = subtitle.textContent;
 }
 
 function submitHandlerFormEdit(evt) {

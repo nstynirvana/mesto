@@ -10,8 +10,8 @@ function handleFormSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const isValid = form.checkValidity();
-    if(isValid) {
-      form.reset();
+    if (isValid) {
+        form.reset();
     }
 }
 
@@ -24,8 +24,8 @@ function handleFormInput(event, selectors) {
 }
 
 function setCustomError(input) {
-    // const validity = input.validity;
     input.setCustomValidity('');
+    input.classList.add(selectors.lineInvalid);
 }
 
 function showInputError(input) {
@@ -54,7 +54,8 @@ function setSubmitButtonState(form, selectors) {
  const selectors = {
      form: '.form',
      button: '.popup__submit-button',
-     buttonInvalid: 'popup__submit-button_invalid'
+     buttonInvalid: 'popup__submit-button_invalid',
+     lineInvalid: 'popup__text_invalid'
  }
 
  function handleButtonState(popup) {

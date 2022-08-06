@@ -1,15 +1,3 @@
-/*.popup__text_invalid {*/
-/*    border-bottom: 1px solid red;*/
-/*    margin-bottom: 5px;*/
-/*}*/
-
-/*.popup__text_invalid:last-child {*/
-/*    margin-bottom: 30px;*/
-/*}*/
-
-/*@media screen and (max-width: 568px) {*/
-/*    .popup__text_invalid:last-child {*/
-/*        margin-bottom: 45px;*/
-/*    }*/
-/*}*/
-
+.popup__text_invalid {
+    border-bottom: 1px solid red;
+}
