@@ -57,19 +57,7 @@ cardCreateForm.addEventListener('submit', submitHandlerFormAdd);
 userEditForm.addEventListener('submit', submitHandlerFormEdit);
 
 const popups = document.querySelectorAll('.popup'); // Список всех попапов
-// Добавление слушателей для кнопок "закрыть"
-popups.forEach(popup => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    }
-  });
-  popup.addEventListener('mousedown', (evt) => {
-      if(evt.target.classList.contains('popup_opened')) {
-        closePopup(popup);
-      }
-  });
-})
+
 
 function closePopupEsc(evt) {
     if (evt.key === "Escape") {
@@ -77,7 +65,6 @@ function closePopupEsc(evt) {
       closePopup(openedPopup);
     }
 }
-
 
 // Изначальная отрисовка списка карточек
 const cardsContainer = document.querySelector(".elements");
@@ -117,7 +104,6 @@ function openPopupVisual(event) {
   openPopup(popupVisual);
 }
 
-
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -135,7 +121,6 @@ function deleteCard(event) {
   cartToDelete.remove();
 }
 
-
 // Применение изменений из форм
 function submitHandlerFormAdd(evt) {
   evt.preventDefault();
@@ -145,7 +130,6 @@ function submitHandlerFormAdd(evt) {
     link: placeImgLinkInput.value
   };
 
-  
   renderCard(cardData);
   closePopup(popupAdd);
 
@@ -194,4 +178,18 @@ function renderCard(cardData) {
   const cardElement = createCard(cardData);
   cardsContainer.prepend(cardElement);
 }
+
+// Добавление слушателей для кнопок "закрыть"
+popups.forEach(popup => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
+    }
+  });
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  });
+})
 

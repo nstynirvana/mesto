@@ -1,3 +1,11 @@
+const selectors = {
+    form: '.form',
+    button: '.popup__submit-button',
+    buttonInvalid: 'popup__submit-button_invalid',
+    lineInvalid: 'popup__text_invalid'
+}
+
+
 function enableValidation(selectors) {
     const forms = document.querySelectorAll(selectors.form);
     forms.forEach((form) => {
@@ -49,13 +57,6 @@ function setSubmitButtonState(form, selectors) {
      span.forEach((span) => {
          span.textContent = ''
      });
- }
-
- const selectors = {
-     form: '.form',
-     button: '.popup__submit-button',
-     buttonInvalid: 'popup__submit-button_invalid',
-     lineInvalid: 'popup__text_invalid'
  }
 
  function handleButtonState(popup) {
