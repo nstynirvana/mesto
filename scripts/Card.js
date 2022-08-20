@@ -1,7 +1,8 @@
 class Card {
-    constructor(data, template) {
+    constructor({data, handleCardClick}, template ) {
       this._data = data;
       this._template = template;
+      this._handleCardClick = handleCardClick;
     }
   
     // Публичный метод
@@ -25,11 +26,13 @@ class Card {
   
     // Приватные методы
     _addEventListeners(element) {
-      const likeButton = element.querySelector(".element__like-button");
-      const deleteButton = element.querySelector(".element__delete-button");
-  
-      likeButton.addEventListener("click", this._likeCard);
-      deleteButton.addEventListener("click", this._deleteCard);
+      this._likeButton = element.querySelector('.element__like-button'); 
+      this._deleteButton = element.querySelector(".element__delete-button");
+      this._cardImage = element.querySelector("img");
+      
+      this._likeButton.addEventListener("click", this._likeCard);
+      this._deleteButton.addEventListener("click", this._deleteCard);
+      this._cardImage.addEventListener('click', () => this._handleCardClick());
     }
   
     _getElement() {

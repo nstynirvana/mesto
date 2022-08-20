@@ -12,7 +12,7 @@
     flex-direction: column;
     background-color: rgba(0,0,0,0.5);
     z-index: 11;
-    transition: visibility .5s, opacity .5s ease-in;
     visibility: hidden;
     opacity: 0;
+    transition: visibility .5s, opacity .5s;
 }

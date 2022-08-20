@@ -1,4 +1,4 @@
-import FormValidator from "./Validation.js";
+import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
 
 // Попапы
@@ -7,12 +7,8 @@ const popupAdd = document.querySelector(".popup_add");
 const popupVisual = document.querySelector(".popup-visual");
 const cardDetailPopupImage = document.querySelector(".popup-visual__image");
 
-const buttonOpenEditProfilePopup = document.querySelector(
-  ".profile__edit-button"
-);
-const buttonOpenAddProfilePopup = document.querySelector(
-  ".profile__add-button"
-);
+const buttonOpenEditProfilePopup = document.querySelector(".profile__edit-button");
+const buttonOpenAddProfilePopup = document.querySelector(".profile__add-button");
 
 // Формы
 const userEditForm = document.querySelector("#userEditForm");
@@ -89,19 +85,20 @@ const selectors = {
   lineInvalid: "popup__text_invalid",
 };
 
-const editUserUserFormValidator = new FormValidator(selectors, userEditForm);
+const editUserFormValidator = new FormValidator(selectors, userEditForm);
 const createCardFormValidator = new FormValidator(selectors, cardCreateForm);
+editUserFormValidator.enableValidation();
+createCardFormValidator.enableValidation();
 // console.log(editUserUserFormValidator)
+
 
 function openPopupEdit() {
   setInputEditFormValue();
   openPopup(popupEdit);
-  editUserUserFormValidator.enableValidation();
 }
 
 function openPopupAdd() {
   openPopup(popupAdd);
-  createCardFormValidator.enableValidation();
 }
 
 function openPopupVisual(event) {
@@ -151,16 +148,35 @@ function submitHandlerFormEdit(evt) {
   closePopup(popupEdit);
 }
 
-function renderCard(cardData) {
-  const card = new Card(cardData, cardsTemplate);
-  console.log(card)
-  const cardElement = card.generate();
- console.log(cardElement)
-  const img = cardElement.querySelector("img");
-  img.addEventListener("click", openPopupVisual);
+// function createCard(cardData) {
+//   const card = new Card(cardData, cardsTemplate)
+//   const cardElement = card.generate();
+//   return cardElement;
+// }
 
-  cardsContainer.prepend(cardElement);
-}
+// function renderCard(cardData) {
+//   const cardElement = createCard(cardData)
+//   cardsContainer.prepend(cardElement);
+// }
+
+// function handleCardClick(name, link) {
+
+// }
+
+function renderCard(cardData) {
+  const card = new Card({
+    data: {name, link},
+    //функция открытия попапа с изображением
+    handleCardClick: () => {
+      openPopupVisual.open(cardData)
+    }
+  }, cardsTemplate);
+
+  const cardElement = card.generate();
+  return cardElement;
+};
+
+
 
 // Добавление слушателей для кнопок "закрыть"
 popups.forEach((popup) => {

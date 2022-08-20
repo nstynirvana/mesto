@@ -2,6 +2,10 @@ class FormValidator {
     constructor(selectors, form) {
       this._selectors = selectors;
       this._form = form;
+      // this._inputList, 
+      //  this._cardImage, 
+      //  this._likeButton
+       this._button = this._form.querySelector(this._selectors.button);
     }
   
     enableValidation() {
@@ -40,18 +44,17 @@ class FormValidator {
     }
   
     _setSubmitButtonState() {
-      const button = this._form.querySelector(this._selectors.button);
       const isValid = this._form.checkValidity();
       if (isValid) {
-        button.removeAttribute("disabled");
-        button.classList.remove(this._selectors.buttonInvalid);
+        this._button.removeAttribute("disabled");
+        this._button.classList.remove(this._selectors.buttonInvalid);
       } else {
-        button.setAttribute("disabled", "true");
-        button.classList.add(this._selectors.buttonInvalid);
+        this._button.setAttribute("disabled", "true");
+        this._button.classList.add(this._selectors.buttonInvalid);
       }
     }
     _resetSpanError() {
-      const span = Array.from(document.querySelectorAll(".error"));
+      const span = Array.from(document.querySelector(".error"));
       span.forEach((span) => {
         span.textContent = "";
       });
