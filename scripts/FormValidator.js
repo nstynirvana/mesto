@@ -34,8 +34,13 @@ class FormValidator {
   }
 
   _setCustomError() {
-    this._input.setCustomValidity("");
-    this._input.classList.toggle(this._selectors.lineInvalid);
+    if (this._isValid) {
+      this._input.classList.remove(this._selectors.lineInvalid);
+    } else {
+      this._input.setCustomValidity("");
+      this._input.classList.add(this._selectors.lineInvalid);
+    }
+   
   }
 
   _showInputError() {
