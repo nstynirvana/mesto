@@ -7,8 +7,12 @@ const popupAdd = document.querySelector(".popup_add");
 const popupVisual = document.querySelector(".popup-visual");
 const cardDetailPopupImage = document.querySelector(".popup-visual__image");
 
-const buttonOpenEditProfilePopup = document.querySelector(".profile__edit-button");
-const buttonOpenAddProfilePopup = document.querySelector(".profile__add-button");
+const buttonOpenEditProfilePopup = document.querySelector(
+  ".profile__edit-button"
+);
+const buttonOpenAddProfilePopup = document.querySelector(
+  ".profile__add-button"
+);
 
 // Формы
 const userEditForm = document.querySelector("#userEditForm");
@@ -24,7 +28,7 @@ const placeImgLinkInput = document.querySelector(".popup__text_type_image");
 const title = document.querySelector(".profile__title");
 const subtitle = document.querySelector(".profile__subtitle");
 
-const initialCards = [
+const initialCardsData = [
   {
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -70,7 +74,8 @@ function closePopupEsc(evt) {
 // Изначальная отрисовка списка карточек
 const cardsContainer = document.querySelector(".elements");
 const cardsTemplate = document.querySelector("#template-element").content;
-initialCards.forEach(renderCard);
+const cardElements = initialCardsData.map((card) => createCard(card));
+renderCards(cardElements);
 
 // Открытие попапов и инциализация значений
 function openPopup(popup) {
@@ -83,6 +88,7 @@ const selectors = {
   button: ".popup__submit-button",
   buttonInvalid: "popup__submit-button_invalid",
   lineInvalid: "popup__text_invalid",
+  error: ".error",
 };
 
 const editUserFormValidator = new FormValidator(selectors, userEditForm);
@@ -90,7 +96,6 @@ const createCardFormValidator = new FormValidator(selectors, cardCreateForm);
 editUserFormValidator.enableValidation();
 createCardFormValidator.enableValidation();
 // console.log(editUserUserFormValidator)
-
 
 function openPopupEdit() {
   setInputEditFormValue();
@@ -101,14 +106,11 @@ function openPopupAdd() {
   openPopup(popupAdd);
 }
 
-function openPopupVisual(event) {
-  const img = event.target;
-  const link = img.getAttribute("src");
-  const name = event.target.getAttribute("alt");
+function openPopupVisual({ name, link }) {
   cardDetailPopupImage.setAttribute("src", link);
   cardDetailPopupImage.setAttribute("alt", name);
 
-  imageText.textContent = event.target.getAttribute("alt");
+  imageText.textContent = name;
 
   openPopup(popupVisual);
 }
@@ -128,7 +130,8 @@ function submitHandlerFormAdd(evt) {
     link: placeImgLinkInput.value,
   };
 
-  renderCard(cardData);
+  const cardElement = createCard(cardData);
+  renderCards([cardElement]);
   closePopup(popupAdd);
 
   evt.target.reset();
@@ -148,35 +151,19 @@ function submitHandlerFormEdit(evt) {
   closePopup(popupEdit);
 }
 
-// function createCard(cardData) {
-//   const card = new Card(cardData, cardsTemplate)
-//   const cardElement = card.generate();
-//   return cardElement;
-// }
+function handleCardClick(cardData) {
+  openPopupVisual(cardData);
+}
 
-// function renderCard(cardData) {
-//   const cardElement = createCard(cardData)
-//   cardsContainer.prepend(cardElement);
-// }
+function createCard(data) {
+  const card = new Card(data, handleCardClick, cardsTemplate);
+  return card.generate();
+}
 
-// function handleCardClick(name, link) {
-
-// }
-
-function renderCard(cardData) {
-  const card = new Card({
-    data: {name, link},
-    //функция открытия попапа с изображением
-    handleCardClick: () => {
-      openPopupVisual.open(cardData)
-    }
-  }, cardsTemplate);
-
-  const cardElement = card.generate();
-  return cardElement;
-};
-
-
+function renderCards(cards) {
+  console.log(cards);
+  cardsContainer.prepend(...cards);
+}
 
 // Добавление слушателей для кнопок "закрыть"
 popups.forEach((popup) => {
