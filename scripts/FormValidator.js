@@ -2,35 +2,38 @@ class FormValidator {
   constructor(selectors, form) {
     this._selectors = selectors;
     this._form = form;
-    // this._inputList,
-    //  this._cardImage,
-    //  this._likeButton
     this._button = this._form.querySelector(this._selectors.button);
   }
 
   enableValidation() {
-    this._form.addEventListener("submit", this._handleFormSubmit);
+    this._form.addEventListener("submit", this._handleFormSubmit.bind(this));
     this._form.addEventListener("input", (event) =>
-      this._handleFormInput(event, this._selectors)
+      this._handleFormInput(event)
     );
-    this._setSubmitButtonState();
+    // this._setSubmitButtonState();
     this._resetSpanError();
   }
 
   _handleFormSubmit(event) {
     event.preventDefault();
-    const form = event.currentTarget;
+    // const form = event.currentTarget;
     if (this._isValid) {
-      form.reset();
+      this._form.reset();
     }
+    this._checkValidity();
+    this._resetSpanError();
   }
 
   _handleFormInput(event) {
     this._input = event.target;
+    this._checkValidity();
+  }
+
+  _checkValidity() {
+    this._isValid = this._form.checkValidity();
     this._setCustomError();
     this._showInputError();
-    this._isValid = this._form.checkValidity();
-    this._setSubmitButtonState(this._form, this._selectors);
+    this._setSubmitButtonState();
   }
 
   _setCustomError() {
@@ -40,7 +43,6 @@ class FormValidator {
       this._input.setCustomValidity("");
       this._input.classList.add(this._selectors.lineInvalid);
     }
-   
   }
 
   _showInputError() {

@@ -11,7 +11,7 @@ class Card {
     this._addEventListeners();
     return this._cardElement;
   }
-
+  
 // Приватные методы
 
   _createCard() {
