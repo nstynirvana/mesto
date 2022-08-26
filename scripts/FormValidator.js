@@ -10,8 +10,7 @@ class FormValidator {
     this._form.addEventListener("input", (event) =>
       this._handleFormInput(event)
     );
-    // this._setSubmitButtonState();
-    this._resetSpanError();
+    // resetErrors();
   }
 
   _handleFormSubmit(event) {
@@ -21,7 +20,7 @@ class FormValidator {
       this._form.reset();
     }
     this._checkValidity();
-    this._resetSpanError();
+    // resetErrors();
   }
 
   _handleFormInput(event) {
@@ -39,10 +38,11 @@ class FormValidator {
   _setCustomError() {
     if (this._isValid) {
       this._input.classList.remove(this._selectors.lineInvalid);
-    } else {
-      this._input.setCustomValidity("");
-      this._input.classList.add(this._selectors.lineInvalid);
     }
+    // } else {
+    //   this._input.setCustomValidity("");
+    //   this._input.classList.add(this._selectors.lineInvalid);
+    // }
   }
 
   _showInputError() {
@@ -60,10 +60,21 @@ class FormValidator {
     }
   }
 
-  _resetSpanError() {
-    const span = Array.from(this._form.querySelectorAll(this._selectors.error));
+  resetErrors() {
+    const span = Array.from(
+      this._form.querySelectorAll(this._selectors.error)
+      );
+
     span.forEach((span) => {
       span.textContent = "";
+    });
+
+    const inputs = Array.from(
+      this._form.querySelectorAll(this._selectors.input)
+      );
+
+    inputs.forEach((input) => {
+      input.classList.remove(this._selectors.lineInvalid);
     });
   }
 }

@@ -95,14 +95,15 @@ const editUserFormValidator = new FormValidator(selectors, userEditForm);
 const createCardFormValidator = new FormValidator(selectors, cardCreateForm);
 editUserFormValidator.enableValidation();
 createCardFormValidator.enableValidation();
-// console.log(editUserUserFormValidator)
 
 function openPopupEdit() {
   setInputEditFormValue();
+  editUserFormValidator.resetErrors();
   openPopup(popupEdit);
 }
 
 function openPopupAdd() {
+  createCardFormValidator.resetErrors();
   openPopup(popupAdd);
 }
 
