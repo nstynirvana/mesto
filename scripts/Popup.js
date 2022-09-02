@@ -1,40 +1,47 @@
-import { PopupWithForm } from './PopupWithForm.js';
-import { PopupWithImage } from './PopupWithImage.js';
- 
-export class Popup {
-    constructor(popupSelector) {
-        this._popupElement = document.querySelector(popupSelector);
-        this.popupOpened = ".popup_opened";
-        this.popupClosed = '"popup__close-button';
-        this._handleEscClose = this._handleEscClose.bind(this);
-    }
+class Popup {
+  constructor(popupSelector) {
+    this._popupElement = document.querySelector(popupSelector);
+    this._popupOpenedSelector = "popup_opened";
+    this._popupCloseButtonSelector = ".popup__close-button";
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this.setEventListeners();
+  }
 
-    open() {
-        this._popupElement.closest('.popup').classList.add(this.popupOpened);
-        document.addEventListener('keydown', this._handleEscClose);
-    }
+  open() {
+    this._popupElement
+      .closest(".popup")
+      .classList.add(this._popupOpenedSelector);
+    document.addEventListener("keydown", this._handleEscClose);
+  }
 
-    close() {
-        this._popupElement.closest('.popup').classList.remove(this.popupOpened);
-        document.removeEventListener('keydown', this._handleEscClose);
-    }
+  close() {
+    this._popupElement
+      .closest(".popup")
+      .classList.remove(this._popupOpenedSelector);
+    document.removeEventListener("keydown", this._handleEscClose);
+  }
 
-    _handleEscClose(evt) {
-        if (evt.key === 'Escape') {
-            this.closePopup();
-        }
+  _handleEscClose(evt) {
+    if (evt.key === "Escape") {
+      this.close();
     }
+  }
 
-    setEventListeners() {
-        this._popupElement.closest('.popup').addEventListener('mousedown', (evt) => {
-            if (evt.target.classList.contains(this.popupOpened)) {
-                this.close();
-            }
-            if (evt.target.classList.contains(this.popupClosed)) {
-                this.close();
-            }
-        });
-    }
+  setEventListeners() {
+    this._popupElement.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("popup_opened")) {
+        this.close();
+      }
+    });
+
+    const closeBtn = this._popupElement.querySelector(
+      this._popupCloseButtonSelector
+    );
+    closeBtn.addEventListener("click", (evt) => {
+      console.log(evt.target);
+      this.close();
+    });
+  }
 }
 
-
+export default Popup;

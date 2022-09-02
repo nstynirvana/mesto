@@ -1,25 +1,20 @@
-import { userNameInput, userJobInput} from './index.js';
+class UserInfo {
+  constructor({ nameSelector, aboutSelector }) {
+    this._name = document.querySelector(nameSelector);
+    this._about = document.querySelector(aboutSelector);
+  }
 
-export class UserInfo {
-    constructor({ nameSelector, aboutSelector}) {
-        this.name = document.querySelector(nameSelector);
-        this.about = document.querySelector(aboutSelector);
-    }
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      about: this._about.textContent,
+    };
+  }
 
-    getUserInfo() {
-        return {
-            name: this.name.textContent,
-            about: this.about.textContent
-        };
-    }
-
-    setUserInfo({ name, about }) {
-        this.name.textContent = ;
-        this.about.textContent = ;
-    }
-
-    setUserNameInfo({ name, about }) {
-        this.name.textContent = ;
-        this.about.textContent = a;
-    }
+  setUserInfo({ name, about }) {
+    this._name.textContent = name;
+    this._about.textContent = about;
+  }
 }
+
+export default UserInfo;

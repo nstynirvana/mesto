@@ -39,10 +39,6 @@ class FormValidator {
     if (this._isValid) {
       this._input.classList.remove(this._selectors.lineInvalid);
     }
-    // } else {
-    //   this._input.setCustomValidity("");
-    //   this._input.classList.add(this._selectors.lineInvalid);
-    // }
   }
 
   _showInputError() {
@@ -61,9 +57,7 @@ class FormValidator {
   }
 
   resetErrors() {
-    const span = Array.from(
-      this._form.querySelectorAll(this._selectors.error)
-      );
+    const span = Array.from(this._form.querySelectorAll(this._selectors.error));
 
     span.forEach((span) => {
       span.textContent = "";
@@ -71,7 +65,7 @@ class FormValidator {
 
     const inputs = Array.from(
       this._form.querySelectorAll(this._selectors.input)
-      );
+    );
 
     inputs.forEach((input) => {
       input.classList.remove(this._selectors.lineInvalid);
