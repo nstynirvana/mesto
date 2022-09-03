@@ -14,8 +14,9 @@ class Card {
   
 // Приватные методы
 
-  _createCard() {
+  _createCard(cardSelectors) {
     const element = this._getElement();
+    const {deleteButton, likeButton} = this._cardElement(cardSelectors, element);
     const { name, link } = this._data;
 
     element.querySelector(".element__title").textContent = name;
@@ -25,14 +26,14 @@ class Card {
     this._cardImage.setAttribute("src", link);
     this._cardImage.setAttribute("alt", name);
 
-    this._cardElement = element;
+    // this._cardElement = element;
   }
 
   _addEventListeners() {
-    const likeButton = this._cardElement.querySelector(".element__like-button");
-    const deleteButton = this._cardElement.querySelector(
-      ".element__delete-button"
-    );
+    // const likeButton = this._cardElement.querySelector(".element__like-button");
+    // const deleteButton = this._cardElement.querySelector(
+    //   ".element__delete-button"
+    // );
 
     likeButton.addEventListener("click", this._likeCard);
     deleteButton.addEventListener("click", this._deleteCard);

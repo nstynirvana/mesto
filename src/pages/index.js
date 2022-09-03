@@ -9,7 +9,8 @@ import {
   profileSelectors,
   initialCardsData,
   validationSelectors,
-  formSelectors
+  formSelectors,
+  cardSelectors
 } from "../constants/constants.js";
 import './index.css';
 
@@ -33,7 +34,9 @@ const placeNameInput = document.querySelector(".popup__text_type_title");
 const placeImgLinkInput = document.querySelector(".popup__text_type_image");
 
 const popupAdd = new PopupWithForm(".popup_add");
+popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit");
+popupEdit.setEventListeners();
 const popupVisual = new PopupWithImage(".popup-visual");
 
 const userInfo = new UserInfo({
@@ -45,8 +48,8 @@ const userInfo = new UserInfo({
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
 
-cardCreateForm.addEventListener("submit", submitHandlerFormAdd);
-userEditForm.addEventListener("submit", submitHandlerFormEdit);
+// cardCreateForm.addEventListener("submit", submitHandlerFormAdd);
+// userEditForm.addEventListener("submit", submitHandlerFormEdit);
 
 // Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
@@ -86,19 +89,19 @@ function openPopupVisual({ name, link }) {
   popupVisual.open({ name, src: link });
 }
 // Применение изменений из форм
-function submitHandlerFormAdd(evt) {
-  evt.preventDefault();
+// function submitHandlerFormAdd(evt) {
+//   evt.preventDefault();
 
-  const cardData = {
-    name: placeNameInput.value,
-    link: placeImgLinkInput.value,
-  };
+//   const cardData = {
+//     name: placeNameInput.value,
+//     link: placeImgLinkInput.value,
+//   };
 
-  renderCard(cardData);
-  popupAdd.close();
+//   renderCard(cardData);
+//   popupAdd.close();
 
-  evt.target.reset();
-}
+//   evt.target.reset();
+// }
 
 function setInputEditFormValue() {
   const { name, about } = userInfo.getUserInfo();
@@ -106,16 +109,16 @@ function setInputEditFormValue() {
   userJobInput.value = about;
 }
 
-function submitHandlerFormEdit(evt) {
-  evt.preventDefault();
+// function submitHandlerFormEdit(evt) {
+//   evt.preventDefault();
 
-  userInfo.setUserInfo({
-    name: userNameInput.value,
-    about: userJobInput.value,
-  });
+//   userInfo.setUserInfo({
+//     name: userNameInput.value,
+//     about: userJobInput.value,
+//   });
 
-  popupEdit.close();
-}
+//   popupEdit.close();
+// }
 
 function handleCardClick(cardData) {
   console.log(cardData);
@@ -124,7 +127,7 @@ function handleCardClick(cardData) {
 
 function createCard(data) {
   const card = new Card(data, handleCardClick, cardsTemplate);
-  return card.generate();
+  return card.generate(cardSelectors);
 }
 
 function renderCard(cardData) {

@@ -13,6 +13,11 @@ export const validationSelectors = {
   input: "input",
 };
 
+export const cardSelectors = {
+  likeButton: ".element__like-button",
+  deleteButton: ".element__delete-button"
+}
+
 export const formSelectors = {
   userEdit: "#userEditForm",
   cardCreate: "#cardCreateForm",

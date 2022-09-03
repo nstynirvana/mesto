@@ -9,14 +9,12 @@ class Popup {
 
   open() {
     this._popupElement
-      .closest(".popup")
       .classList.add(this._popupOpenedSelector);
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._popupElement
-      .closest(".popup")
       .classList.remove(this._popupOpenedSelector);
     document.removeEventListener("keydown", this._handleEscClose);
   }

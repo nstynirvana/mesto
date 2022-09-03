@@ -57,9 +57,9 @@ class FormValidator {
   }
 
   resetErrors() {
-    const span = Array.from(this._form.querySelectorAll(this._selectors.error));
+    const spans = Array.from(this._form.querySelectorAll(this._selectors.error));
 
-    span.forEach((span) => {
+    spans.forEach((span) => {
       span.textContent = "";
     });
 
