@@ -15,7 +15,10 @@ export const validationSelectors = {
 
 export const cardSelectors = {
   likeButton: ".element__like-button",
-  deleteButton: ".element__delete-button"
+  deleteButton: ".element__delete-button",
+  elementTitle: ".element__title",
+  elementImage : ".element__image",
+  element: ".element" 
 }
 
 export const formSelectors = {

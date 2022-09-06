@@ -1,8 +1,9 @@
 class Card {
-  constructor(data, handleCardClick, template) {
+  constructor(data, handleCardClick, template, cardSelectors) {
     this._data = data;
     this._template = template;
     this._handleCardClick = handleCardClick;
+    this._cardSelectors = cardSelectors;
   }
 
   // Публичный метод
@@ -14,29 +15,27 @@ class Card {
   
 // Приватные методы
 
-  _createCard(cardSelectors) {
-    const element = this._getElement();
-    const {deleteButton, likeButton} = this._cardElement(cardSelectors, element);
+  _createCard() {
+    this._cardElement = this._getElement();
+
     const { name, link } = this._data;
 
-    element.querySelector(".element__title").textContent = name;
+    this._cardElement.querySelector(this._cardSelectors.elementTitle).textContent = name;
 
-    this._cardImage = element.querySelector(".element__image");
+    this._cardImage = this._cardElement.querySelector(this._cardSelectors.elementImage);
 
     this._cardImage.setAttribute("src", link);
     this._cardImage.setAttribute("alt", name);
-
-    // this._cardElement = element;
   }
 
   _addEventListeners() {
-    // const likeButton = this._cardElement.querySelector(".element__like-button");
-    // const deleteButton = this._cardElement.querySelector(
-    //   ".element__delete-button"
-    // );
+    this._likeButton = this._cardElement.querySelector(".element__like-button");
+    this._deleteButton = this._cardElement.querySelector(
+      ".element__delete-button"
+    );
 
-    likeButton.addEventListener("click", this._likeCard);
-    deleteButton.addEventListener("click", this._deleteCard);
+    this._likeButton.addEventListener("click", this._likeCard);
+    this._deleteButton.addEventListener("click", this._deleteCard);
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._data);
@@ -47,14 +46,13 @@ class Card {
     return this._template.querySelector(".element").cloneNode(true);
   }
 
-  _likeCard(event) {
-    const likeBtn = event.target;
-    likeBtn.classList.toggle("element__like-button_active");
+  _likeCard() {
+    this._likeButton.classList.toggle("element__like-button_active"); // (вынести в cardSelectors)
   }
 
-  _deleteCard(event) {
-    const cartToDelete = event.target.closest(".element"); 
-    cartToDelete.remove();
+  _deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 }
 

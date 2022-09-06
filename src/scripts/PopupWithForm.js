@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 class PopupWithForm extends Popup {
   constructor(popupSelector, formSubmitHandler) {
     super(popupSelector);
+    this._form = this._popupElement.querySelector('.form');
     this._inputList = Array.from(
       this._popupElement.querySelectorAll(".popup__input")
     );
@@ -10,6 +11,8 @@ class PopupWithForm extends Popup {
       ".popup__submit-button"
     );
     this._formSubmitHandler = formSubmitHandler;
+    console.log(this._popupElement);
+   
   }
 
   _getInputValues() {
@@ -20,17 +23,17 @@ class PopupWithForm extends Popup {
     return inputValues;
   }
   setEventListeners() {
-    // cardCreateForm.addEventListener("submit", submitHandlerFormAdd);
-    // userEditForm.addEventListener("submit", submitHandlerFormEdit);
-    this._popupElement.addEventListener('submit', (evt) => {
+    console.log(this._form)
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._formSubmitHandler(this._getInputValues());
-      
     });
   }
 
   close() {
-    this._popupElement.reset();
+    this._form.reset();
+    this._popupElement.classList.remove(this._popupOpenedSelector);
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 }
 
