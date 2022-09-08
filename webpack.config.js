@@ -11,7 +11,6 @@ module.exports = {
         publicPath: ''
   },
   mode: 'development', // добавили режим разработчика,
-  target: 'web',
   devServer: {
     static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
     compress: true, // это ускорит загрузку в режиме разработки
