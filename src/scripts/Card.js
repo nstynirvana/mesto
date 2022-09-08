@@ -47,7 +47,7 @@ class Card {
   }
 
   _likeCard() {
-    this._likeButton.classList.toggle("element__like-button_active"); // (вынести в cardSelectors)
+    this._likeButton.classList.toggle(this._cardSelectors.likeButtonActive); 
   }
 
   _deleteCard() {

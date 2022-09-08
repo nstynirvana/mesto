@@ -25,6 +25,15 @@ class Popup {
     }
   }
 
+  _handleCloseButton(){
+    const closeBtn = this._popupElement.querySelector(
+      this._popupCloseButtonSelector
+    );
+    closeBtn.addEventListener("click", (evt) => {
+      this.close();
+    });
+  }
+
   setEventListeners() {
     this._popupElement.addEventListener("mousedown", (evt) => {
       if (evt.target.classList.contains("popup_opened")) {
@@ -32,13 +41,7 @@ class Popup {
       }
     });
 
-    const closeBtn = this._popupElement.querySelector(
-      this._popupCloseButtonSelector
-    );
-    closeBtn.addEventListener("click", (evt) => {
-      console.log(evt.target);
-      this.close();
-    });
+    this._handleCloseButton();
   }
 }
 

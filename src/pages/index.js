@@ -119,7 +119,6 @@ function submitHandlerFormEdit(evt) {
 }
 
 function handleCardClick(cardData) {
-  console.log(cardData);
   openPopupVisual(cardData);
 }
 

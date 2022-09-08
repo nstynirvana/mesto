@@ -18,7 +18,8 @@ export const cardSelectors = {
   deleteButton: ".element__delete-button",
   elementTitle: ".element__title",
   elementImage : ".element__image",
-  element: ".element" 
+  element: ".element" ,
+  likeButtonActive: ".element__like-button_active"
 }
 
 export const formSelectors = {

@@ -19,7 +19,6 @@
     .popup__close-button {
         width: 20px;
         height: 20px;
-        top: -20px;
-        right: -20px;
+        right: 0;
     }
 }
