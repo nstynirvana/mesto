@@ -4,7 +4,7 @@ class PopupWithForm extends Popup {
   constructor(popupSelector, formSubmitHandler) {
     super(popupSelector);
     this._inputList = Array.from(
-      this._popupElement.querySelectorAll(".popup__input")
+      this._popupElement.querySelectorAll(".popup__text")
     );
     this._submitButton = this._popupElement.querySelector(
       ".popup__submit-button"
@@ -25,13 +25,12 @@ class PopupWithForm extends Popup {
       evt.preventDefault();
       this._formSubmitHandler(this._getInputValues());
     });
-    this._handleCloseButton();
+    super._handleCloseButton();
   }
 
   close() {
     this._form.reset();
-    this._popupElement.classList.remove(this._popupOpenedSelector);
-    document.removeEventListener("keydown", this._handleEscClose);
+    super.close();
   }
 }
 

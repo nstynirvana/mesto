@@ -4,7 +4,6 @@ class Popup {
     this._popupOpenedSelector = "popup_opened";
     this._popupCloseButtonSelector = ".popup__close-button";
     this._handleEscClose = this._handleEscClose.bind(this);
-    this.setEventListeners();
   }
 
   open() {
