@@ -4,11 +4,11 @@ class Popup {
     this._popupOpenedSelector = "popup_opened";
     this._popupCloseButtonSelector = ".popup__close-button";
     this._handleEscClose = this._handleEscClose.bind(this);
-    this.setEventListeners();
   }
 
   open() {
-    this._popupElement.classList.add(this._popupOpenedSelector);
+    this._popupElement
+      .classList.add(this._popupOpenedSelector);
     document.addEventListener("keydown", this._handleEscClose);
   }
 
@@ -24,7 +24,7 @@ class Popup {
     }
   }
 
-  _handleCloseButton() {
+  _handleCloseButton(){
     const closeBtn = this._popupElement.querySelector(
       this._popupCloseButtonSelector
     );
@@ -45,5 +45,3 @@ class Popup {
 }
 
 export default Popup;
-
-

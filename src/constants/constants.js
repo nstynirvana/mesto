@@ -19,7 +19,7 @@ export const cardSelectors = {
   elementTitle: ".element__title",
   elementImage : ".element__image",
   element: ".element" ,
-  likeButtonActive: ".element__like-button_active"
+  likeButtonActive: "element__like-button_active"
 }
 
 export const formSelectors = {

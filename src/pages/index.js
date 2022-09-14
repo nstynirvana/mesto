@@ -37,7 +37,7 @@ const popupAdd = new PopupWithForm(".popup_add", submitHandlerFormAdd);
 popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
 popupEdit.setEventListeners();
-const popupVisual = new PopupWithImage(".popup-visual");
+const popupVisual = new PopupWithImage(".popup_open-image");
 
 const userInfo = new UserInfo({
   nameSelector: profileSelectors.nameSelector,
@@ -80,25 +80,12 @@ function openPopupAdd() {
 }
 
 function openPopupVisual({ name, link }) {
-  cardDetailPopupImage.setAttribute("src", link);
-  cardDetailPopupImage.setAttribute("alt", name);
-
   popupVisual.open({ name, src: link });
 }
 
 // Применение изменений из форм
-function submitHandlerFormAdd(evt) {
-  evt.preventDefault();
-
-  const cardData = {
-    name: placeNameInput.value,
-    link: placeImgLinkInput.value,
-  };
-
+function submitHandlerFormAdd(cardData) {
   renderCard(cardData);
-  popupAdd.close();
-
-  evt.target.reset();
 }
 
 function setInputEditFormValue() {
@@ -107,15 +94,11 @@ function setInputEditFormValue() {
   userJobInput.value = about;
 }
 
-function submitHandlerFormEdit(evt) {
-  evt.preventDefault();
-
+function submitHandlerFormEdit() {
   userInfo.setUserInfo({
     name: userNameInput.value,
     about: userJobInput.value,
   });
-
-  popupEdit.close();
 }
 
 function handleCardClick(cardData) {

@@ -63,9 +63,9 @@
             <button aria-label="Закрыть" type="button" class="popup__close-button popup__close-button_add"></button>
             <h2 class="popup__heading">Новое место</h2>
             <form id="cardCreateForm" name="formAdd" class="form" novalidate>
-                <input type="text" class="popup__text popup__text_type_title" required id="place-name" placeholder= "Название" name="place-name" value="" minlength="2" maxlength="30">
+                <input type="text" class="popup__text popup__text_type_title" required id="place-name" placeholder= "Название" name="name" value="" minlength="2" maxlength="30">
                 <span class="error"></span>
-                <input type="url" class="popup__text popup__text_type_image" required id="place-img-link" placeholder = "Ссылка на картинку" name="place-img-link" value="">
+                <input type="url" class="popup__text popup__text_type_image" required id="place-img-link" placeholder = "Ссылка на картинку" name="link" value="">
                 <span class="error"></span>
                 <button disabled aria-label="Создать" id="create" class="popup__submit-button popup__submit-button_invalid" type="submit">Создать</button>
             </form>
@@ -80,14 +80,39 @@
         </div>
     </div>
 
+    <div class="popup popup_delete">
+        <div class="popup__content">
+            <button aria-label="Закрыть" id="editBtn" type="button" class="popup__close-button popup__close-button_edit"></button>
+            <h2 class="popup__heading">Вы уверены?</h2>
+            <form id="deleteForm" name="formDelete" class="form" novalidate>
+                <button disabled aria-label="Сохранить" id="consent" class="popup__submit-button popup__submit-button_invalid" type="submit">Да</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_edit-avatar">
+        <div class="popup__content">
+            <button aria-label="Закрыть" type="button" class="popup__close-button popup__close-button_add"></button>
+            <h2 class="popup__heading">Обновить аватар</h2>
+            <form id="editAvatarForm" name="formEditAvatar" class="form" novalidate>
+                <input type="url" class="popup__text popup__text_type_image" required id="profile-avatar-link" placeholder = "Ссылка на картинку" name="prfileLink" value="">
+                <span class="error"></span>
+                <button disabled aria-label="Сохранить" id="save" class="popup__submit-button popup__submit-button_invalid" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
     <template id="template-element" >
         <div class="element">
             <img class="element__image" alt="name">
             <button type="button" class="element__delete-button" name="delete" value="delete"></button>
             <div class=" element__info">
                 <h2 class="element__title"></h2>
+                <div class="element__container-likes">
                 <button aria-label="Лайк" type="button" class="element__like-button" name="like"
-                        value="like"></button>
+                value="like"></button>
+                <p class="element__sum-likes">0</p>    
+                </div>
             </div>
         </div>
     </template>

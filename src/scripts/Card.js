@@ -34,8 +34,8 @@ class Card {
       ".element__delete-button"
     );
 
-    this._likeButton.addEventListener("click", this._likeCard);
-    this._deleteButton.addEventListener("click", this._deleteCard);
+    this._likeButton.addEventListener("click", this._likeCard.bind(this));
+    this._deleteButton.addEventListener("click", this._deleteCard.bind(this));
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._data);
