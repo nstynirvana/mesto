@@ -1,5 +1,6 @@
 import FormValidator from "../scripts/FormValidator.js";
 import Card from "../scripts/Card.js";
+import Api from "../scripts/Api.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
@@ -15,7 +16,6 @@ import {
 import './index.css';
 
 // Попапы
-const cardDetailPopupImage = document.querySelector(".popup-visual__image");
 
 const buttonOpenEditProfilePopup = document.querySelector(
   ".profile__edit-button"
@@ -23,6 +23,12 @@ const buttonOpenEditProfilePopup = document.querySelector(
 const buttonOpenAddProfilePopup = document.querySelector(
   ".profile__add-button"
 );
+
+// const buttonOpenDeleteCardPopup = document.querySelector(
+//   ".element__delete-button_open"
+// );
+
+
 
 // Формы
 const userEditForm = document.querySelector(formSelectors.userEdit);
@@ -38,6 +44,8 @@ popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
 popupEdit.setEventListeners();
 const popupVisual = new PopupWithImage(".popup_open-image");
+// const popupDelete = new PopupWithForm(".popup_delete", submitHandlerFormEdit);
+// popupDelete.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: profileSelectors.nameSelector,
@@ -47,6 +55,7 @@ const userInfo = new UserInfo({
 // Добавление необходимых слушателей при загрузке страницы
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
+// buttonOpenDeleteCardPopup.addEventListener("click", openPopupDelete);
 
 // Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
@@ -83,6 +92,10 @@ function openPopupVisual({ name, link }) {
   popupVisual.open({ name, src: link });
 }
 
+// function openPopupDelete() {
+//   popupDelete.open();
+// }
+
 // Применение изменений из форм
 function submitHandlerFormAdd(cardData) {
   renderCard(cardData);
@@ -114,3 +127,16 @@ function renderCard(cardData) {
   const cardElement = createCard(cardData);
   section.addItem(cardElement);
 }
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-50/cards',
+  headers: {
+      authorization: '85e5819e-fbee-490f-b0c8-532aec964f98',
+      'content-type': 'application/json'
+  }
+});
+
+const cards = api.getAllCards();
+cards.then(data => {
+  
+});
