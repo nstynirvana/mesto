@@ -8,7 +8,6 @@ import UserInfo from "../scripts/UserInfo.js";
 import {
   elementsSelector,
   profileSelectors,
-  initialCardsData,
   validationSelectors,
   formSelectors,
   cardSelectors
@@ -39,6 +38,14 @@ const userJobInput = document.querySelector(".popup__text_type_job");
 const placeNameInput = document.querySelector(".popup__text_type_title");
 const placeImgLinkInput = document.querySelector(".popup__text_type_image");
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-50',
+  headers: {
+      authorization: '85e5819e-fbee-490f-b0c8-532aec964f98',
+      'content-type': 'application/json'
+  }
+});
+
 const popupAdd = new PopupWithForm(".popup_add", submitHandlerFormAdd);
 popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
@@ -47,24 +54,47 @@ const popupVisual = new PopupWithImage(".popup_open-image");
 // const popupDelete = new PopupWithForm(".popup_delete", submitHandlerFormEdit);
 // popupDelete.setEventListeners();
 
-const userInfo = new UserInfo({
-  nameSelector: profileSelectors.nameSelector,
-  aboutSelector: profileSelectors.aboutSelector,
-});
+let userInfo;
+const userPromise = api.getUserInfo();
+
+userPromise
+.then((info) => {
+  userInfo = new UserInfo({
+    nameSelector: profileSelectors.nameSelector,
+    aboutSelector: profileSelectors.aboutSelector,
+  });
+  userInfo.setUserInfo(info);
+})
+.catch(err => {
+  console.log(err);
+})
+
+
 
 // Добавление необходимых слушателей при загрузке страницы
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
 // buttonOpenDeleteCardPopup.addEventListener("click", openPopupDelete);
 
+
+
 // Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
 
-const section = new Section(
-  { items: initialCardsData, renderer: renderCard },
-  elementsSelector
-);
-section.renderItems();
+let section;
+const cardsPromise = api.getAllCards();
+
+cardsPromise
+.then((cards) => {
+  section = new Section(
+    { items: cards, renderer: renderCard },
+    elementsSelector
+  );
+  section.renderItems();
+})
+ .catch( err => {
+  console.log(err);
+ })
 
 const editUserFormValidator = new FormValidator(
   validationSelectors,
@@ -108,6 +138,11 @@ function setInputEditFormValue() {
 }
 
 function submitHandlerFormEdit() {
+  const userPromise = api.editUserInfo({
+    name: userNameInput.value,
+    about: userJobInput.value,
+  })
+  userPromise.then
   userInfo.setUserInfo({
     name: userNameInput.value,
     about: userJobInput.value,
@@ -128,15 +163,8 @@ function renderCard(cardData) {
   section.addItem(cardElement);
 }
 
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-50/cards',
-  headers: {
-      authorization: '85e5819e-fbee-490f-b0c8-532aec964f98',
-      'content-type': 'application/json'
-  }
-});
 
-const cards = api.getAllCards();
-cards.then(data => {
+
+// cards.then(data => {
   
-});
+// });
