@@ -27,8 +27,6 @@ const buttonOpenAddProfilePopup = document.querySelector(
 //   ".element__delete-button_open"
 // );
 
-
-
 // Формы
 const userEditForm = document.querySelector(formSelectors.userEdit);
 const cardCreateForm = document.querySelector(formSelectors.cardCreate);
@@ -62,6 +60,7 @@ userPromise
   userInfo = new UserInfo({
     nameSelector: profileSelectors.nameSelector,
     aboutSelector: profileSelectors.aboutSelector,
+    avatarSelector: profileSelectors.avatarSelector
   });
   userInfo.setUserInfo(info);
 })
@@ -163,8 +162,3 @@ function renderCard(cardData) {
   section.addItem(cardElement);
 }
 
-
-
-// cards.then(data => {
-  
-// });

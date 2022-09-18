@@ -2,7 +2,8 @@ export const elementsSelector = ".elements";
 
 export const profileSelectors = {
   nameSelector: ".profile__title",
-  aboutSelector: ".profile__subtitle"
+  aboutSelector: ".profile__subtitle",
+  avatarSelector: ".profile__image"
 };
 
 export const validationSelectors = {
