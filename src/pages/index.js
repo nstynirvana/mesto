@@ -141,11 +141,17 @@ function submitHandlerFormEdit() {
     name: userNameInput.value,
     about: userJobInput.value,
   })
-  userPromise.then
-  userInfo.setUserInfo({
-    name: userNameInput.value,
-    about: userJobInput.value,
-  });
+  userPromise
+  .then(({name, about}) => {
+    userInfo.setUserInfo({
+      name,
+      about,
+    });
+  })
+  .catch(err => {
+    console.log(err);
+   });
+  
 }
 
 function handleCardClick(cardData) {

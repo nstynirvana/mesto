@@ -1,29 +1,9 @@
 .profile__image {
-    max-width: 100%;
-    border-radius: 150px;
+    display: block;
     width: 120px;
     height: 120px;
-    margin: 3.75px 26.25px 3.75px 0;
     object-fit: cover;
-}
-
-@media screen and (max-width: 1040px) {
-    .profile__image {
-        margin: 0 auto;
-    }
-}
-
-@media screen and (max-width: 568px) {
-    .profile__image {
-        margin: 0 auto;
-    }
-}
-
-.profile__image:hover {
-    opacity: 0.5;
-    transition: 1s;
-    content: url('../../../images/profile-button.svg');
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    border-radius: 150px;
+    margin: 0;
+    max-width: 100%;
+  }
