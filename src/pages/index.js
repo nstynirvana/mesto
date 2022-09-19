@@ -50,8 +50,6 @@ popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
 popupEdit.setEventListeners();
 const popupVisual = new PopupWithImage(".popup_open-image");
-// const popupWithSubmit = new PopupWithSubmit(".popup_delete");
-// popupWithSubmit.setEventListeners();
 // const popupEditAvatar = new PopupWithSubmit(".");
 // popupEditAvatar.setEventListeners();
 
@@ -124,16 +122,16 @@ function openPopupVisual({ name, link }) {
   popupVisual.open({ name, src: link });
 }
 
-// function openPopupDelete() {
-//   popupDelete.open();
-// }
+function openPopupDelete() {
+  popupDelete.open();
+}
 
 // Применение изменений из форм
 function submitHandlerFormAdd(cardData) {
-  renderCard(cardData);
-  cardsPromise
+  const createCardPromise = api.addNewCard(cardData);
+  createCardPromise
   .then(({name, link}) => {
-    
+    renderCard({name, link});
   })
   .catch(err => {
     console.log(err);

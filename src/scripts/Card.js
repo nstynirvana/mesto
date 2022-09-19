@@ -1,3 +1,5 @@
+import PopupWithSubmit from "./PopupWithSubmit.js";
+
 class Card {
   constructor(data, handleCardClick, template, cardSelectors) {
     this._data = data;
@@ -18,7 +20,7 @@ class Card {
   _createCard() {
     this._cardElement = this._getElement();
 
-    const { name, link } = this._data;
+    const { name, link, likes } = this._data;
 
     this._cardElement.querySelector(this._cardSelectors.elementTitle).textContent = name;
 
@@ -26,6 +28,9 @@ class Card {
 
     this._cardImage.setAttribute("src", link);
     this._cardImage.setAttribute("alt", name);
+
+    this._likeCounter = this._cardElement.querySelector(this._cardSelectors.likeCounter);
+    this._likeCounter.textContent = likes.length;
   }
 
   _addEventListeners() {
@@ -35,7 +40,7 @@ class Card {
     );
 
     this._likeButton.addEventListener("click", this._likeCard.bind(this));
-    this._deleteButton.addEventListener("click", this._deleteCard.bind(this));
+    this._deleteButton.addEventListener("click", this._openSubmitPopup.bind(this));
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._data);
@@ -50,10 +55,18 @@ class Card {
     this._likeButton.classList.toggle(this._cardSelectors.likeButtonActive); 
   }
 
+  _openSubmitPopup() {
+    const popupWithSubmit = new PopupWithSubmit(".popup_delete", this._deleteCard.bind(this));
+    popupWithSubmit.setEventListeners();
+    popupWithSubmit.open();
+  }
+
   _deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
+
+
 }
 
 export default Card;

@@ -3,7 +3,7 @@ export const elementsSelector = ".elements";
 export const profileSelectors = {
   nameSelector: ".profile__title",
   aboutSelector: ".profile__subtitle",
-  avatarSelector: ".profile__image"
+  avatarSelector: ".profile__image",
 };
 
 export const validationSelectors = {
@@ -20,7 +20,8 @@ export const cardSelectors = {
   elementTitle: ".element__title",
   elementImage : ".element__image",
   element: ".element" ,
-  likeButtonActive: "element__like-button_active"
+  likeButtonActive: "element__like-button_active",
+  likeCounter: ".element__sum-likes"
 }
 
 export const formSelectors = {

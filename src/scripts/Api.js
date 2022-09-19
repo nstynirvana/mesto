@@ -31,7 +31,7 @@ class Api {
     }
 // Редактируем данные пользователя
     editUserInfo(info) {
-        return fetch(this.url + '/users/me',{
+        return fetch(this._url + '/users/me',{
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify(info)
@@ -39,18 +39,18 @@ class Api {
         .then(this._checkResponse);
     }
 // Добавляем новую карточку
-    addNewCard() {
-        return fetch(this.url + '/cards',{
+    addNewCard(cardInfo) {
+        return fetch(this._url + '/cards',{
             method: 'POST',
             headers: this._headers,
-            body: JSON.stringify(info)
+            body: JSON.stringify(cardInfo)
         })
         .then(this._checkResponse);
     }
 
     // Редактируем аватар
     editUserAvatar() {
-        return fetch(this.url + '/users/me/avatar/', {
+        return fetch(this._url + '/users/me/avatar/', {
           method: "PATCH",
           headers: this._headers,
           body: JSON.stringify(info)
@@ -59,7 +59,7 @@ class Api {
       }
     // Ставим лайк
     setCardlike() {
-        return fetch(this.url + '/cards/cardId/likes', {
+        return fetch(this._url + '/cards/cardId/likes', {
           method: "PUT",
           headers: this._headers,
         })
@@ -67,7 +67,7 @@ class Api {
       }
     // Удаляем лайк
     deleteCardlike() {
-        return fetch(this.url + '/cards/cardId/likes', {
+        return fetch(this._url + '/cards/cardId/likes', {
           method: "DELETE",
           headers: this._headers,
         })
