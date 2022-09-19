@@ -4,6 +4,7 @@ import Api from "../scripts/Api.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithSubmit from "../scripts/PopupWithSubmit.js";
 import UserInfo from "../scripts/UserInfo.js";
 import {
   elementsSelector,
@@ -49,8 +50,10 @@ popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
 popupEdit.setEventListeners();
 const popupVisual = new PopupWithImage(".popup_open-image");
-// const popupDelete = new PopupWithForm(".popup_delete", submitHandlerFormEdit);
-// popupDelete.setEventListeners();
+// const popupWithSubmit = new PopupWithSubmit(".popup_delete");
+// popupWithSubmit.setEventListeners();
+// const popupEditAvatar = new PopupWithSubmit(".");
+// popupEditAvatar.setEventListeners();
 
 let userInfo;
 const userPromise = api.getUserInfo();
@@ -128,6 +131,13 @@ function openPopupVisual({ name, link }) {
 // Применение изменений из форм
 function submitHandlerFormAdd(cardData) {
   renderCard(cardData);
+  cardsPromise
+  .then(({name, link}) => {
+    
+  })
+  .catch(err => {
+    console.log(err);
+   });
 }
 
 function setInputEditFormValue() {
@@ -151,7 +161,6 @@ function submitHandlerFormEdit() {
   .catch(err => {
     console.log(err);
    });
-  
 }
 
 function handleCardClick(cardData) {
