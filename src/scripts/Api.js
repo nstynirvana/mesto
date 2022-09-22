@@ -14,60 +14,60 @@ class Api {
 
     //   Получаем все карточки
     getAllCards() {
-        return fetch(this._url + '/cards', {
+        return fetch(`${this._url}/cards`, {
             method: 'GET',
             headers: this._headers
         })
-        .then(this._checkResponse);
+        .then(this._checkResponse)
     }
 
 // Получаем данные пользователя
     getUserInfo() {
-        return fetch(this._url + '/users/me', {
+        return fetch(`${this._url}/users/me`, {
             method: 'GET',
             headers: this._headers
         })
-        .then(this._checkResponse);
+        .then(this._checkResponse)
     }
 // Редактируем данные пользователя
     editUserInfo(info) {
-        return fetch(this._url + '/users/me',{
+        return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify(info)
         })
-        .then(this._checkResponse);
+        .then(this._checkResponse)
     }
 // Добавляем новую карточку
     addNewCard(cardInfo) {
-        return fetch(this._url + '/cards',{
+        return fetch(`${this._url}/cards`,{
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify(cardInfo)
         })
-        .then(this._checkResponse);
+        .then(this._checkResponse)
     }
 
     // Редактируем аватар
-    editUserAvatar() {
-        return fetch(this._url + '/users/me/avatar/', {
+    editUserAvatar({avatar}) {
+        return fetch(`${this._url}/users/me/avatar/`, {
           method: "PATCH",
           headers: this._headers,
-          body: JSON.stringify(info)
+          body: JSON.stringify({avatar})
         })
         .then(this._checkResponse)
       }
     // Ставим лайк
-    setCardlike() {
-        return fetch(this._url + '/cards/cardId/likes', {
+    setCardLike(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
           method: "PUT",
           headers: this._headers,
         })
         .then(this._checkResponse)
       }
     // Удаляем лайк
-    deleteCardlike() {
-        return fetch(this._url + '/cards/cardId/likes', {
+    deleteCardLike(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
           method: "DELETE",
           headers: this._headers,
         })

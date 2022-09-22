@@ -27,4 +27,5 @@ export const cardSelectors = {
 export const formSelectors = {
   userEdit: "#userEditForm",
   cardCreate: "#cardCreateForm",
+  editAvatar: "#editAvatarForm"
 };

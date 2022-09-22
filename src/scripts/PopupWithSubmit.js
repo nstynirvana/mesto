@@ -6,7 +6,6 @@ class PopupWithSubmit extends Popup {
       this._submitHandler = submitHandler;
       this._submitButton = this._popupElement.querySelector(
         ".popup__submit-button");
-        console.log(this._submitButton);
     }
 
     setEventListeners() {

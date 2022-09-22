@@ -4,7 +4,6 @@ import Api from "../scripts/Api.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
-import PopupWithSubmit from "../scripts/PopupWithSubmit.js";
 import UserInfo from "../scripts/UserInfo.js";
 import {
   elementsSelector,
@@ -24,13 +23,14 @@ const buttonOpenAddProfilePopup = document.querySelector(
   ".profile__add-button"
 );
 
-// const buttonOpenDeleteCardPopup = document.querySelector(
-//   ".element__delete-button_open"
-// );
+const buttonOpenEditAvatarPopup = document.querySelector(
+  ".profile__image-edit-button"
+);
 
 // Формы
 const userEditForm = document.querySelector(formSelectors.userEdit);
 const cardCreateForm = document.querySelector(formSelectors.cardCreate);
+const editUserCardForm = document.querySelector(formSelectors.editAvatar);
 
 const userNameInput = document.querySelector(".popup__text_type_name");
 const userJobInput = document.querySelector(".popup__text_type_job");
@@ -50,10 +50,11 @@ popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", submitHandlerFormEdit);
 popupEdit.setEventListeners();
 const popupVisual = new PopupWithImage(".popup_open-image");
-// const popupEditAvatar = new PopupWithSubmit(".");
-// popupEditAvatar.setEventListeners();
+const popupEditAvatar = new PopupWithForm(".popup_edit-avatar", submitHandlerAvatarEdit);
+popupEditAvatar.setEventListeners();
 
 let userInfo;
+let userData;
 const userPromise = api.getUserInfo();
 
 userPromise
@@ -64,19 +65,17 @@ userPromise
     avatarSelector: profileSelectors.avatarSelector
   });
   userInfo.setUserInfo(info);
+  userData = {...info};
 })
 .catch(err => {
   console.log(err);
 })
 
-
-
 // Добавление необходимых слушателей при загрузке страницы
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
+buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar)
 // buttonOpenDeleteCardPopup.addEventListener("click", openPopupDelete);
-
-
 
 // Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
@@ -104,8 +103,15 @@ const createCardFormValidator = new FormValidator(
   validationSelectors,
   cardCreateForm
 );
+
+const editUserAvatarValidator = new FormValidator(
+  validationSelectors,
+  editUserCardForm
+);
+
 editUserFormValidator.enableValidation();
 createCardFormValidator.enableValidation();
+editUserAvatarValidator.enableValidation();
 
 function openPopupEdit() {
   setInputEditFormValue();
@@ -122,16 +128,16 @@ function openPopupVisual({ name, link }) {
   popupVisual.open({ name, src: link });
 }
 
-function openPopupDelete() {
-  popupDelete.open();
+function openPopupEditAvatar() {
+  popupEditAvatar.open();
 }
 
 // Применение изменений из форм
 function submitHandlerFormAdd(cardData) {
   const createCardPromise = api.addNewCard(cardData);
-  createCardPromise
-  .then(({name, link}) => {
-    renderCard({name, link});
+  return createCardPromise
+  .then((card) => {
+    renderCard(card);
   })
   .catch(err => {
     console.log(err);
@@ -149,11 +155,12 @@ function submitHandlerFormEdit() {
     name: userNameInput.value,
     about: userJobInput.value,
   })
-  userPromise
-  .then(({name, about}) => {
+  return userPromise
+  .then(({name, about, avatar}) => {
     userInfo.setUserInfo({
       name,
       about,
+      avatar
     });
   })
   .catch(err => {
@@ -161,12 +168,23 @@ function submitHandlerFormEdit() {
    });
 }
 
+function submitHandlerAvatarEdit(formData) {
+  console.log(formData)
+return api.editUserAvatar(formData)
+.then((user) => {
+  userInfo.setUserInfo(user)
+})
+.catch(err => {
+  console.log(err);
+ });
+}
+
 function handleCardClick(cardData) {
   openPopupVisual(cardData);
 }
 
 function createCard(data) {
-  const card = new Card(data, handleCardClick, cardsTemplate, cardSelectors);
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api);
   return card.generate();
 }
 
