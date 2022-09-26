@@ -1,14 +1,14 @@
 const path = require('path'); // подключаем path к конфигу вебпак
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: { main: './src/pages/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-        publicPath: ''
+    publicPath: ''
   },
   mode: 'development', // добавили режим разработчика,
   target: 'web',
@@ -43,15 +43,15 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, {
           loader: 'css-loader',
           options: { importLoaders: 1 }
-        },'postcss-loader']
+        }, 'postcss-loader']
       },
-      ]
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html' // путь к файлу index.html
-      }),
-      new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin() // подключение плагина для объединения файлов
+      template: './src/index.html' // путь к файлу index.html
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin() // подключение плагина для объединения файлов
   ]
 }
