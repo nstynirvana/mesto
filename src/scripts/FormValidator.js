@@ -15,12 +15,10 @@ class FormValidator {
 
   _handleFormSubmit(event) {
     event.preventDefault();
-    // const form = event.currentTarget;
     if (this._isValid) {
       this._form.reset();
     }
     this._checkValidity();
-    // resetErrors();
   }
 
   _handleFormInput(event) {

@@ -24,7 +24,7 @@ class Popup {
     }
   }
 
-  _handleCloseButton(){
+  _bindCloseButtonClickHandler(){
     const closeBtn = this._popupElement.querySelector(
       this._popupCloseButtonSelector
     );
@@ -40,7 +40,7 @@ class Popup {
       }
     });
 
-    this._handleCloseButton();
+    this._bindCloseButtonClickHandler();
   }
 }
 

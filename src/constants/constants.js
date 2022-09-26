@@ -6,6 +6,13 @@ export const profileSelectors = {
   avatarSelector: ".profile__image",
 };
 
+export const variablesOpeningPopups = {
+  buttonOpenEditPopup: ".profile__edit-button",
+  buttonOpenAddPopup: ".profile__add-button",
+  buttonOpenEditFacePopup: ".profile__image-edit-button",
+};
+
+
 export const validationSelectors = {
   button: ".popup__submit-button",
   buttonInvalid: "popup__submit-button_invalid",
