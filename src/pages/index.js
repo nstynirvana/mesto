@@ -4,6 +4,7 @@ import Api from "../components/Api.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   elementsSelector,
@@ -20,6 +21,8 @@ import './index.css';
 const buttonOpenEditProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenEditPopup);
 const buttonOpenAddProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenAddPopup);
 const buttonOpenEditAvatarPopup = document.querySelector(variablesOpeningPopups.buttonOpenEditFacePopup);
+// const buttonOpenSubmitFormPopup = document.querySelector(cardSelectors.deleteButton);
+
 
 // Формы
 const userEditForm = document.querySelector(formSelectors.userEdit);
@@ -42,8 +45,11 @@ popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(".popup_edit", handleUserFormSubmit);
 popupEdit.setEventListeners();
 const cardImagePopup = new PopupWithImage(".popup_open-image");
+cardImagePopup.setEventListeners();
 const popupEditAvatar = new PopupWithForm(".popup_edit-avatar", handleAvatarFormSubmit);
 popupEditAvatar.setEventListeners();
+const popupWithSubmit = new PopupWithSubmit(".popup_delete", handleDeleteOnClick);
+popupWithSubmit.setEventListeners();
 
 let userInfo;
 let userData;
@@ -62,8 +68,6 @@ userPromise
   .catch(err => {
     console.log(err);
   })
-
-
 
 // Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
@@ -120,6 +124,10 @@ function openPopupEditAvatar() {
   popupEditAvatar.open();
 }
 
+// function openPopupSubmit() {
+//   popupWithSubmit.open();
+// }
+
 // Применение изменений из форм
 function handleCardFormSubmit(cardData) {
   const createCardPromise = api.addNewCard(cardData);
@@ -155,6 +163,19 @@ function handleUserFormSubmit() {
       console.log(err);
     });
 }
+ 
+function handleDeleteOnClick() {
+  // const submitPromise = api.deleteCard();
+  // return submitPromise
+  // .then((cardId) => {
+  //   this._cardElement.remove(cardId);
+  //   popupWithSubmit.close();
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  // })
+  popupWithSubmit.open();
+}
 
 function handleAvatarFormSubmit(formData) {
   return api.editUserAvatar(formData)
@@ -171,7 +192,8 @@ function handleCardClick(cardData) {
 }
 
 function createCard(data) {
-  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api);
+
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, handleDeleteOnClick);
   return card.generate();
 }
 
@@ -184,3 +206,4 @@ function renderCard(cardData) {
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
 buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
+// buttonOpenSubmitFormPopup.addEventListener("click", openPopupSubmit);

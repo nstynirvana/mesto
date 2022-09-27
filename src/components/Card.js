@@ -1,13 +1,12 @@
-import PopupWithSubmit from "./PopupWithSubmit.js";
-
 class Card {
-  constructor(data, user, handleCardClick, template, cardSelectors, api) {
+  constructor(data, user, handleCardClick, template, cardSelectors, api, handleDeleteOnClick) {
     this._data = data;
     this._api = api;
     this._user = user;
     this._template = template;
     this._handleCardClick = handleCardClick;
     this._cardSelectors = cardSelectors;
+    this._handleDeleteOnClick = handleDeleteOnClick;
   }
 
   // Публичный метод
@@ -15,7 +14,6 @@ class Card {
     this._createCard();
     this._addEventListeners();
     return this._cardElement;
-
   }
 
   // Приватные методы
@@ -50,7 +48,11 @@ class Card {
     this._likeButton = this._cardElement.querySelector(".element__like-button");
 
     this._likeButton.addEventListener("click", this._likeCard.bind(this));
-    this._deleteButton.addEventListener("click", this._openSubmitPopup.bind(this));
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteOnClick(this);
+      this._deleteCard();
+    });
+    
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._data);
@@ -76,15 +78,9 @@ class Card {
       .catch((err) => console.log(err));
   }
 
-  _openSubmitPopup() {
-    const popupWithSubmit = new PopupWithSubmit(".popup_delete", this._deleteCard.bind(this));
-    popupWithSubmit.setEventListeners();
-    popupWithSubmit.open();
-  }
-
-  _deleteCard(cardElement) {
-    cardElement.remove();
-    cardElement = null;
+  _deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
 

@@ -3,6 +3,8 @@ class FormValidator {
     this._selectors = selectors;
     this._form = form;
     this._button = this._form.querySelector(this._selectors.button);
+    this._spans = Array.from(this._form.querySelectorAll(this._selectors.error));
+    this._inputs = Array.from(this._form.querySelectorAll(this._selectors.input));
   }
 
   enableValidation() {
@@ -55,17 +57,11 @@ class FormValidator {
   }
 
   resetErrors() {
-    const spans = Array.from(this._form.querySelectorAll(this._selectors.error));
-
-    spans.forEach((span) => {
+    this._spans.forEach((span) => {
       span.textContent = "";
     });
 
-    const inputs = Array.from(
-      this._form.querySelectorAll(this._selectors.input)
-    );
-
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.classList.remove(this._selectors.lineInvalid);
     });
   }

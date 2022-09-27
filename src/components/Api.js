@@ -48,6 +48,14 @@ class Api {
             .then(this._checkResponse)
     }
 
+    //Удаляем карточку
+    deleteCard(cardId) {
+        return fetch(`${this._url}cards/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
+        })
+            .then(this._checkResponse)
+    }
     // Редактируем аватар
     editUserAvatar({ avatar }) {
         return fetch(`${this._url}/users/me/avatar/`, {
