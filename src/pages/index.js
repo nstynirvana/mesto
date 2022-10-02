@@ -108,11 +108,13 @@ AvatarFormValidator.enableValidation();
 function openPopupEdit() {
   setInputEditFormValue();
   UserFormValidator.resetErrors();
+  UserFormValidator.resetFormErrors();
   popupEdit.open();
 }
 
 function openPopupAdd() {
   CardFormValidator.resetErrors();
+  CardFormValidator.resetFormErrors();
   popupAdd.open();
 }
 
@@ -121,6 +123,7 @@ function openPopupVisual({ name, link }) {
 }
 
 function openPopupEditAvatar() {
+  AvatarFormValidator.resetFormErrors();
   popupEditAvatar.open();
 }
 
@@ -163,7 +166,7 @@ function handleUserFormSubmit() {
       console.log(err);
     });
 }
- 
+
 function handleDeleteOnClick() {
   // const submitPromise = api.deleteCard();
   // return submitPromise
@@ -191,9 +194,15 @@ function handleCardClick(cardData) {
   openPopupVisual(cardData);
 }
 
-function createCard(data) {
+function likeCounterUpdate(cardId) {
+  const submitPromiseLike = api.setCardLike(cardId)
+    .then(() => {
 
-  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, handleDeleteOnClick);
+    })
+}
+
+function createCard(data) {
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, handleDeleteOnClick, likeCounterUpdate);
   return card.generate();
 }
 

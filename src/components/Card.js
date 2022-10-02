@@ -40,6 +40,7 @@ class Card {
 
     this._deleteButton = this._cardElement.querySelector(".element__delete-button");
     if (this._user._id === owner._id) {
+
       this._deleteButton.classList.remove('hidden');
     }
   }
@@ -49,8 +50,7 @@ class Card {
 
     this._likeButton.addEventListener("click", this._likeCard.bind(this));
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteOnClick(this);
-      this._deleteCard();
+      this._handleDeleteOnClick(this._deleteCard());
     });
     
 

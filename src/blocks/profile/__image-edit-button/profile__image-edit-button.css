@@ -9,6 +9,7 @@
     margin-right: 30px;
     background-color: transparent;
     color: #fff;
+    overflow: hidden;
   }
   
   .profile__image-edit-button:hover::after {
@@ -19,7 +20,7 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8);
     /* opacity: 0.5; */
-    /* transform: scale(3); */
+    transform: scale(3);
     transition: 1s;
     content: url('../../../images/profile-button.svg');
     display: flex;

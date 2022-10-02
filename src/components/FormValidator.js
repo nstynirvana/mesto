@@ -14,12 +14,12 @@ class FormValidator {
     );
     // resetErrors();
   }
-
+  
+  resetFormErrors() {
+    this._form.reset();
+  }
   _handleFormSubmit(event) {
     event.preventDefault();
-    if (this._isValid) {
-      this._form.reset();
-    }
     this._checkValidity();
   }
 
