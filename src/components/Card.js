@@ -1,12 +1,12 @@
 class Card {
-  constructor(data, user, handleCardClick, template, cardSelectors, api, handleDeleteOnClick) {
+  constructor(data, user, handleCardClick, template, cardSelectors, api, openRemovePopupSubmit) {
     this._data = data;
     this._api = api;
     this._user = user;
     this._template = template;
     this._handleCardClick = handleCardClick;
     this._cardSelectors = cardSelectors;
-    this._handleDeleteOnClick = handleDeleteOnClick;
+    this._openRemovePopupSubmit = openRemovePopupSubmit;
   }
 
   // Публичный метод
@@ -50,7 +50,7 @@ class Card {
 
     this._likeButton.addEventListener("click", this._likeCard.bind(this));
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteOnClick(this._deleteCard());
+      this._openRemovePopupSubmit();
     });
     
 

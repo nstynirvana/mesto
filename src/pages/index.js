@@ -21,7 +21,6 @@ import './index.css';
 const buttonOpenEditProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenEditPopup);
 const buttonOpenAddProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenAddPopup);
 const buttonOpenEditAvatarPopup = document.querySelector(variablesOpeningPopups.buttonOpenEditFacePopup);
-// const buttonOpenSubmitFormPopup = document.querySelector(cardSelectors.deleteButton);
 
 
 // Формы
@@ -33,9 +32,9 @@ const userNameInput = document.querySelector(".popup__text_type_name");
 const userJobInput = document.querySelector(".popup__text_type_job");
 
 const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-50',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-52',
   headers: {
-    authorization: '85e5819e-fbee-490f-b0c8-532aec964f98',
+    authorization: 'bc55db49-2649-4ef7-be93-0875309bb963',
     'content-type': 'application/json'
   }
 });
@@ -127,9 +126,9 @@ function openPopupEditAvatar() {
   popupEditAvatar.open();
 }
 
-// function openPopupSubmit() {
-//   popupWithSubmit.open();
-// }
+function openPopupSubmit() {
+  popupWithSubmit.open();
+}
 
 // Применение изменений из форм
 function handleCardFormSubmit(cardData) {
@@ -167,17 +166,16 @@ function handleUserFormSubmit() {
     });
 }
 
-function handleDeleteOnClick() {
-  // const submitPromise = api.deleteCard();
-  // return submitPromise
-  // .then((cardId) => {
-  //   this._cardElement.remove(cardId);
-  //   popupWithSubmit.close();
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  // })
-  popupWithSubmit.open();
+function handleDeleteOnClick(deleteCardFn) {
+  const submitPromise = api.deleteCard();
+  return submitPromise
+  .then((cardId) => {
+    deleteCardFn();
+    popupWithSubmit.close();
+  })
+  .catch(err => {
+    console.log(err);
+  })
 }
 
 function handleAvatarFormSubmit(formData) {
@@ -202,7 +200,7 @@ function likeCounterUpdate(cardId) {
 }
 
 function createCard(data) {
-  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, handleDeleteOnClick, likeCounterUpdate);
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
   return card.generate();
 }
 
@@ -215,4 +213,3 @@ function renderCard(cardData) {
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
 buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
-// buttonOpenSubmitFormPopup.addEventListener("click", openPopupSubmit);
