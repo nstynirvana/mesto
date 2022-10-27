@@ -12,7 +12,6 @@ class FormValidator {
     this._form.addEventListener("input", (event) =>
       this._handleFormInput(event)
     );
-    // resetErrors();
   }
   
   resetFormErrors() {

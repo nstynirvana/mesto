@@ -126,8 +126,8 @@ function openPopupEditAvatar() {
   popupEditAvatar.open();
 }
 
-function openPopupSubmit() {
-  popupWithSubmit.open();
+function openPopupSubmit(cardId) {
+  popupWithSubmit.open(cardId);
 }
 
 // Применение изменений из форм
@@ -166,10 +166,21 @@ function handleUserFormSubmit() {
     });
 }
 
-function handleDeleteOnClick(deleteCardFn) {
-  const submitPromise = api.deleteCard();
+
+//  function handleDeleteOnClick(card) {
+//     api.deleteCard(card.cardId)
+//     .then(() => {
+//       card.element.remove();
+//       popupWithSubmit.close();
+//     })
+//     .catch(err => console.log(err));
+//   }
+
+
+function handleDeleteOnClick(cardId) {
+  const submitPromise = api.deleteCard(cardId);
   return submitPromise
-  .then((cardId) => {
+  .then(() => {
     deleteCardFn();
     popupWithSubmit.close();
   })
@@ -192,11 +203,16 @@ function handleCardClick(cardData) {
   openPopupVisual(cardData);
 }
 
-function likeCounterUpdate(cardId) {
-  const submitPromiseLike = api.setCardLike(cardId)
-    .then(() => {
-
-    })
+function likeCounterUpdate(card) {
+   if(card.isLiked()) {
+    api.deleteCardlike(card.cardId)
+    .then(dataCard => card.setLikes(dataCard.likes))
+    .catch(err => console.log(err))
+  } else {
+    api.setCardlike(card.cardId)
+    .then(dataCard => card.setLikes(dataCard.likes))
+    .catch(err => console.log(err))
+  }
 }
 
 function createCard(data) {

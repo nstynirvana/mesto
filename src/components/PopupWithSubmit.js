@@ -12,9 +12,14 @@ class PopupWithSubmit extends Popup {
         super.setEventListeners();
         this._submitButton.addEventListener('click', (evt) => {
             evt.preventDefault();
-            this._submitHandler();
+            this._submitHandler(this._cardId);
             this.close();
         });
+    }
+
+    open(cardId) {
+        this._cardId = cardId;
+        super.open();
     }
 
     close() {
