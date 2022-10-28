@@ -16,6 +16,14 @@ import {
 } from "../constants/constants.js";
 import './index.css';
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  headers: {
+    authorization: 'bc55db49-2649-4ef7-be93-0875309bb963',
+    'content-type': 'application/json'
+  }
+});
+
 // Попапы
 
 const buttonOpenEditProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenEditPopup);
@@ -31,13 +39,7 @@ const editUserCardForm = document.querySelector(formSelectors.editAvatar);
 const userNameInput = document.querySelector(".popup__text_type_name");
 const userJobInput = document.querySelector(".popup__text_type_job");
 
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-52',
-  headers: {
-    authorization: 'bc55db49-2649-4ef7-be93-0875309bb963',
-    'content-type': 'application/json'
-  }
-});
+
 
 const popupAdd = new PopupWithForm(".popup_add", handleCardFormSubmit);
 popupAdd.setEventListeners();
@@ -166,22 +168,11 @@ function handleUserFormSubmit() {
     });
 }
 
-
-//  function handleDeleteOnClick(card) {
-//     api.deleteCard(card.cardId)
-//     .then(() => {
-//       card.element.remove();
-//       popupWithSubmit.close();
-//     })
-//     .catch(err => console.log(err));
-//   }
-
-
-function handleDeleteOnClick(cardId) {
-  const submitPromise = api.deleteCard(cardId);
+function handleDeleteOnClick(card) {
+  const submitPromise = api.deleteCard(card.id);
   return submitPromise
   .then(() => {
-    deleteCardFn();
+    card.delete();
     popupWithSubmit.close();
   })
   .catch(err => {
@@ -204,14 +195,22 @@ function handleCardClick(cardData) {
 }
 
 function likeCounterUpdate(card) {
-   if(card.isLiked()) {
-    api.deleteCardlike(card.cardId)
-    .then(dataCard => card.setLikes(dataCard.likes))
-    .catch(err => console.log(err))
+  if(card.isLiked()) {
+    return api.deleteCardlike(card.Id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   } else {
-    api.setCardlike(card.cardId)
-    .then(dataCard => card.setLikes(dataCard.likes))
-    .catch(err => console.log(err))
+    return api.setCardlike(card.id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes)
+    })
+    .catch(err => { 
+      console.log(err);
+    });
   }
 }
 
