@@ -16,6 +16,14 @@ import {
 } from "../constants/constants.js";
 import './index.css';
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  headers: {
+    authorization: 'bc55db49-2649-4ef7-be93-0875309bb963',
+    'content-type': 'application/json'
+  }
+});
+
 // Попапы
 
 const buttonOpenEditProfilePopup = document.querySelector(variablesOpeningPopups.buttonOpenEditPopup);
@@ -31,13 +39,7 @@ const editUserCardForm = document.querySelector(formSelectors.editAvatar);
 const userNameInput = document.querySelector(".popup__text_type_name");
 const userJobInput = document.querySelector(".popup__text_type_job");
 
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-52',
-  headers: {
-    authorization: 'bc55db49-2649-4ef7-be93-0875309bb963',
-    'content-type': 'application/json'
-  }
-});
+
 
 const popupAdd = new PopupWithForm(".popup_add", handleCardFormSubmit);
 popupAdd.setEventListeners();
@@ -166,27 +168,16 @@ function handleUserFormSubmit() {
     });
 }
 
-
-//  function handleDeleteOnClick(card) {
-//     api.deleteCard(card.cardId)
-//     .then(() => {
-//       card.element.remove();
-//       popupWithSubmit.close();
-//     })
-//     .catch(err => console.log(err));
-//   }
-
-
-function handleDeleteOnClick(cardId) {
-  const submitPromise = api.deleteCard(cardId);
+function handleDeleteOnClick(card) {
+  const submitPromise = api.deleteCard(card.id);
   return submitPromise
-  .then(() => {
-    deleteCardFn();
-    popupWithSubmit.close();
-  })
-  .catch(err => {
-    console.log(err);
-  })
+    .then(() => {
+      card.delete();
+      popupWithSubmit.close();
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 function handleAvatarFormSubmit(formData) {
@@ -204,28 +195,72 @@ function handleCardClick(cardData) {
 }
 
 function likeCounterUpdate(card) {
-   if(card.isLiked()) {
-    api.deleteCardlike(card.cardId)
-    .then(dataCard => card.setLikes(dataCard.likes))
-    .catch(err => console.log(err))
+  if (card.isLiked()) {
+    api.deleteCardlike(card.id)
+      .then((cardData) => {
+        card.setLikes(cardData.likes)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   } else {
-    api.setCardlike(card.cardId)
-    .then(dataCard => card.setLikes(dataCard.likes))
-    .catch(err => console.log(err))
+    api.setCardlike(card.id)
+      .then((cardData) => {
+        card.setLikes(cardData.likes)
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 
-function createCard(data) {
-  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
-  return card.generate();
-}
 
-function renderCard(cardData) {
-  const cardElement = createCard(cardData);
-  section.addItem(cardElement);
-}
+// const createCard = (data) => {
+//     const card = new Card({
+//       data: data, 
+//       userData: userData, 
+//       handleCardClick: (cardData) => {
+//         openPopupVisual(cardData);
+//       },
+//       cardsTemplate: cardsTemplate,
+//       cardSelectors: cardSelectors,
+//       api: api,
+//       openPopupSubmit: (cardId) => {
+//         popupWithSubmit.open(cardId);
+//       },
+//       likeCounterUpdate: (card) => {
+//         if (card.isLiked()) {
+//           api.deleteCardlike(card.id)
+//             .then((cardData) => {
+//               card.setLikes(cardData.likes)
+//             })
+//             .catch(err => {
+//               console.log(err)
+//             })
+//         } else {
+//           api.setCardlike(card.id)
+//             .then((cardData) => {
+//               card.setLikes(cardData.likes)
+//             })
+//             .catch(err => {
+//               console.log(err);
+//             });
+//         }
+//       }
+//     });
+//       return card.generate();
+//   } 
 
-// Добавление необходимых слушателей при загрузке страницы
-buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
-buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
-buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
+  function createCard(data) {
+    const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
+    return card.generate();
+  }
+  function renderCard(cardData) {
+    const cardElement = createCard(cardData);
+    section.addItem(cardElement);
+  }
+
+  // Добавление необходимых слушателей при загрузке страницы
+  buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
+  buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
+  buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);

@@ -8,9 +8,11 @@ class Card {
     this._cardSelectors = cardSelectors;
     this._openRemovePopupSubmit = openRemovePopupSubmit;
     this._likeCounterUpdate = likeCounterUpdate;
+    this.id = data._id;
   }
 
   // Публичные методы
+
   generate() {
     this._createCard();
     this._addEventListeners();
@@ -18,14 +20,21 @@ class Card {
     return this._cardElement;
   }
 
-  setLikes() {
-    this._data = this._data.likes;
+  setLikes(likes) {
+    this._data.likes = likes;
     this._toggleLike();
   }
 
   isLiked() {
-    return this._data.likes.map((user) => user._id).includes(this._user._id);
+    // return this._data.likes.map((user) => user._id).includes(this._user._id);
+    return this._data.likes.some(user => user._id === this._user._id)
   };
+
+ delete() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
 
   // Приватные методы
 
@@ -53,25 +62,26 @@ class Card {
     else {
       this._deleteButton.classList.remove('hidden');
     }
+    
   }
 
   _toggleLike() {
     if (!this.isLiked()) {
-      this._likeButton.classList.remove(this._cardSelectors.likeButtonActive); //удаляем лайк, если до этого ставили
+      this._likeButton.classList.remove(this._cardSelectors.likeButtonActive); 
     } else {
-      this._likeButton.classList.add(this._cardSelectors.likeButtonActive); //окрашиваем лайк, если до этого не ставили
+      this._likeButton.classList.add(this._cardSelectors.likeButtonActive); 
     }
     this._likeCounter = this._cardElement.querySelector(this._cardSelectors.likeCounter);
     this._likeCounter.textContent = this._data.likes.length;
+    
   }
 
   _addEventListeners() {
     this._likeButton = this._cardElement.querySelector(".element__like-button");
-
-    this._likeButton.addEventListener("click", this._likeCounterUpdate.bind(this));
+    this._likeButton.addEventListener("click", () => this._likeCounterUpdate(this));
 
     this._deleteButton.addEventListener("click", () => {
-      this._openRemovePopupSubmit(this._data._id);
+      this._openRemovePopupSubmit(this);
     });
 
 
@@ -84,11 +94,7 @@ class Card {
     return this._template.querySelector(".element").cloneNode(true);
   }
 
-  _deleteCard() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
-
+ 
 }
 
 export default Card;
