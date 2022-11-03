@@ -16,7 +16,7 @@ class Card {
   generate() {
     this._createCard();
     this._addEventListeners();
-    this._toggleLike();
+    // this._toggleLike();
     return this._cardElement;
   }
 
@@ -62,7 +62,6 @@ class Card {
     else {
       this._deleteButton.classList.remove('hidden');
     }
-    
   }
 
   _toggleLike() {
@@ -78,7 +77,9 @@ class Card {
 
   _addEventListeners() {
     this._likeButton = this._cardElement.querySelector(".element__like-button");
-    this._likeButton.addEventListener("click", () => this._likeCounterUpdate(this));
+    this._likeButton.addEventListener("click", () => {
+      this._likeCounterUpdate(this)
+    });
 
     this._deleteButton.addEventListener("click", () => {
       this._openRemovePopupSubmit(this);

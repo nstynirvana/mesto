@@ -171,6 +171,7 @@ function handleUserFormSubmit() {
 function handleDeleteOnClick(card) {
   const submitPromise = api.deleteCard(card.id);
   return submitPromise
+<<<<<<< HEAD
     .then(() => {
       card.delete();
       popupWithSubmit.close();
@@ -178,6 +179,15 @@ function handleDeleteOnClick(card) {
     .catch(err => {
       console.log(err);
     })
+=======
+  .then(() => {
+    card.delete();
+    popupWithSubmit.close();
+  })
+  .catch(err => {
+    console.log(err);
+  })
+>>>>>>> 336a14b6cdf0d80e620d88aed2c0593391ed6e21
 }
 
 function handleAvatarFormSubmit(formData) {
@@ -195,6 +205,7 @@ function handleCardClick(cardData) {
 }
 
 function likeCounterUpdate(card) {
+<<<<<<< HEAD
   if (card.isLiked()) {
     api.deleteCardlike(card.id)
       .then((cardData) => {
@@ -211,6 +222,24 @@ function likeCounterUpdate(card) {
       .catch(err => {
         console.log(err);
       });
+=======
+  if(card.isLiked()) {
+    return api.deleteCardlike(card.Id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  } else {
+    return api.setCardlike(card.id)
+    .then((cardData) => {
+      card.setLikes(cardData.likes)
+    })
+    .catch(err => { 
+      console.log(err);
+    });
+>>>>>>> 336a14b6cdf0d80e620d88aed2c0593391ed6e21
   }
 }
 
