@@ -52,41 +52,33 @@ popupEditAvatar.setEventListeners();
 const popupWithSubmit = new PopupWithSubmit(".popup_delete", handleDeleteOnClick);
 popupWithSubmit.setEventListeners();
 
-let userInfo;
-let userData;
-const userPromise = api.getUserInfo();
-
-userPromise
-  .then((info) => {
-    userInfo = new UserInfo({
-      nameSelector: profileSelectors.nameSelector,
-      aboutSelector: profileSelectors.aboutSelector,
-      avatarSelector: profileSelectors.avatarSelector
-    });
-    userInfo.setUserInfo(info);
-    userData = { ...info };
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-// Изначальная отрисовка списка карточек
 const cardsTemplate = document.querySelector("#template-element").content;
 
 let section;
-const cardsPromise = api.getAllCards();
+let userId;
+let userData;
 
-cardsPromise
-  .then((cards) => {
-    section = new Section(
+const userInfo = new UserInfo({
+  nameSelector: profileSelectors.nameSelector,
+  aboutSelector: profileSelectors.aboutSelector,
+  avatarSelector: profileSelectors.avatarSelector
+});
+
+Promise.all([api.getUserInfo(), api.getAllCards()])
+  .then(([info,cards]) => {
+     section = new Section(
       { items: cards, renderer: renderCard },
       elementsSelector
-    );
+    );  
+    userId = info.id;
+    userData = { ...info };
+    userInfo.setUserInfo(info);
     section.renderItems();
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   })
+  
 
 const UserFormValidator = new FormValidator(
   validationSelectors,
@@ -196,7 +188,7 @@ function handleCardClick(cardData) {
 
 function likeCounterUpdate(card) {
   if (card.isLiked()) {
-    api.deleteCardlike(card.id)
+    return api.deleteCardlike(card.id)
       .then((cardData) => {
         card.setLikes(cardData.likes)
       })
@@ -204,7 +196,7 @@ function likeCounterUpdate(card) {
         console.log(err)
       })
   } else {
-    api.setCardlike(card.id)
+    return api.setCardlike(card.id)
       .then((cardData) => {
         card.setLikes(cardData.likes)
       })
@@ -214,53 +206,17 @@ function likeCounterUpdate(card) {
   }
 }
 
+function createCard(data) {
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
+  return card.generate();
+}
 
-// const createCard = (data) => {
-//     const card = new Card({
-//       data: data, 
-//       userData: userData, 
-//       handleCardClick: (cardData) => {
-//         openPopupVisual(cardData);
-//       },
-//       cardsTemplate: cardsTemplate,
-//       cardSelectors: cardSelectors,
-//       api: api,
-//       openPopupSubmit: (cardId) => {
-//         popupWithSubmit.open(cardId);
-//       },
-//       likeCounterUpdate: (card) => {
-//         if (card.isLiked()) {
-//           api.deleteCardlike(card.id)
-//             .then((cardData) => {
-//               card.setLikes(cardData.likes)
-//             })
-//             .catch(err => {
-//               console.log(err)
-//             })
-//         } else {
-//           api.setCardlike(card.id)
-//             .then((cardData) => {
-//               card.setLikes(cardData.likes)
-//             })
-//             .catch(err => {
-//               console.log(err);
-//             });
-//         }
-//       }
-//     });
-//       return card.generate();
-//   } 
+function renderCard(cardData) {
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
+}
 
-  function createCard(data) {
-    const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
-    return card.generate();
-  }
-  function renderCard(cardData) {
-    const cardElement = createCard(cardData);
-    section.addItem(cardElement);
-  }
-
-  // Добавление необходимых слушателей при загрузке страницы
-  buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
-  buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
-  buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
+// Добавление необходимых слушателей при загрузке страницы
+buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
+buttonOpenAddProfilePopup.addEventListener("click", openPopupAdd);
+buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);

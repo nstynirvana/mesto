@@ -16,13 +16,13 @@ class Card {
   generate() {
     this._createCard();
     this._addEventListeners();
-    // this._toggleLike();
+    this._toggleLike();
     return this._cardElement;
   }
 
   setLikes(likes) {
     this._data.likes = likes;
-    this._toggleLike();
+    // this._toggleLike();
   }
 
   isLiked() {
