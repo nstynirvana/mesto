@@ -17,13 +17,13 @@ class Card {
   generate() {
     this._createCard();
     this._addEventListeners();
-    this._toggleLike();
+    this._drawLike();
     return this._cardElement;
   }
 
   setLikes(likes) {
     this._data.likes = likes;
-    this._toggleLike();
+    this._drawLike();
   }
 
   isLiked() {
@@ -62,7 +62,7 @@ class Card {
     }
   }
 
-  _toggleLike() {
+  _drawLike() {
     if (!this.isLiked()) {
       this._likeButton.classList.remove(this._cardSelectors.likeButtonActive);
     } else {
