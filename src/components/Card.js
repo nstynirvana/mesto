@@ -9,6 +9,7 @@ class Card {
     this._openRemovePopupSubmit = openRemovePopupSubmit;
     this._likeCounterUpdate = likeCounterUpdate;
     this.id = data._id;
+    console.log(this._template)
   }
 
   // Публичные методы
@@ -30,7 +31,7 @@ class Card {
     return this._data.likes.some(user => user._id === this._user._id)
   };
 
- delete() {
+  delete() {
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -40,10 +41,8 @@ class Card {
 
   _createCard() {
     this._cardElement = this._getElement();
-
-    const { name, link } = this._data;
-
     this._cardElement.querySelector(this._cardSelectors.elementTitle).textContent = name;
+    const { name, link } = this._data;
 
     this._cardImage = this._cardElement.querySelector(this._cardSelectors.elementImage);
 
@@ -66,13 +65,13 @@ class Card {
 
   _toggleLike() {
     if (!this.isLiked()) {
-      this._likeButton.classList.remove(this._cardSelectors.likeButtonActive); 
+      this._likeButton.classList.remove(this._cardSelectors.likeButtonActive);
     } else {
-      this._likeButton.classList.add(this._cardSelectors.likeButtonActive); 
+      this._likeButton.classList.add(this._cardSelectors.likeButtonActive);
     }
     this._likeCounter = this._cardElement.querySelector(this._cardSelectors.likeCounter);
     this._likeCounter.textContent = this._data.likes.length;
-    
+
   }
 
   _addEventListeners() {
@@ -92,10 +91,10 @@ class Card {
   }
 
   _getElement() {
-    return this._template.querySelector(".element").cloneNode(true);
+    return this._template.querySelector(this._cardSelectors.element).cloneNode(true);
   }
 
- 
+
 }
 
 export default Card;
