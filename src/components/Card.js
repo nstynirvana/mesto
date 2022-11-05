@@ -23,6 +23,7 @@ class Card {
 
   setLikes(likes) {
     this._data.likes = likes;
+    this._toggleLike();
   }
 
   isLiked() {
