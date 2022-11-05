@@ -9,7 +9,7 @@ class Card {
     this._openRemovePopupSubmit = openRemovePopupSubmit;
     this._likeCounterUpdate = likeCounterUpdate;
     this.id = data._id;
-    console.log(this._template)
+    this._name = data.name;
   }
 
   // Публичные методы
@@ -23,11 +23,9 @@ class Card {
 
   setLikes(likes) {
     this._data.likes = likes;
-    // this._toggleLike();
   }
 
   isLiked() {
-    // return this._data.likes.map((user) => user._id).includes(this._user._id);
     return this._data.likes.some(user => user._id === this._user._id)
   };
 
@@ -41,7 +39,7 @@ class Card {
 
   _createCard() {
     this._cardElement = this._getElement();
-    this._cardElement.querySelector(this._cardSelectors.elementTitle).textContent = name;
+    this._cardElement.querySelector(this._cardSelectors.elementTitle).textContent = this._name;
     const { name, link } = this._data;
 
     this._cardImage = this._cardElement.querySelector(this._cardSelectors.elementImage);
@@ -91,9 +89,9 @@ class Card {
   }
 
   _getElement() {
-    return this._template.querySelector(this._cardSelectors.element).cloneNode(true);
+    const templateElement = this._template.querySelector(this._cardSelectors.element).cloneNode(true);
+    return templateElement;
   }
-
 
 }
 

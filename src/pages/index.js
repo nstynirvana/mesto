@@ -120,9 +120,9 @@ function openPopupEditAvatar() {
   popupEditAvatar.open();
 }
 
-// function openPopupSubmit(cardId) {
-//   popupWithSubmit.open(cardId);
-// }
+function openPopupSubmit(cardId) {
+  popupWithSubmit.open(cardId);
+}
 
 // Применение изменений из форм
 function handleCardFormSubmit(cardData) {
@@ -182,69 +182,34 @@ function handleAvatarFormSubmit(formData) {
     });
 }
 
-// function handleCardClick(cardData) {
-//   openPopupVisual(cardData);
-// }
+function handleCardClick(cardData) {
+  openPopupVisual(cardData);
+}
 
-// function likeCounterUpdate(card) {
-//   if (card.isLiked()) {
-//     return api.deleteCardlike(card.id)
-//       .then((cardData) => {
-//         card.setLikes(cardData.likes)
-//       })
-//       .catch(err => {
-//         console.log(err)
-//       })
-//   } else {
-//     return api.setCardLike(card.id)
-//       .then((cardData) => {
-//         card.setLikes(cardData.likes)
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//   }
-// }
-const createCard = (data) => {
-    const card = new Card({
-      data, 
-      userData, 
-      handleCardClick: (cardData) => {
-        openPopupVisual(cardData);
-      },
-      cardSelectors,
-      api,
-      openPopupSubmit: (cardId) => {
-        popupWithSubmit.open(cardId);
-      },
-      likeCounterUpdate: (card) => {
-        if (card.isLiked()) {
-          api.deleteCardlike(card.id)
-            .then((cardData) => {
-              card.setLikes(cardData.likes)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-        } else {
-          api.setCardlike(card.id)
-            .then((cardData) => {
-              card.setLikes(cardData.likes)
-            })
-            .catch(err => {
-              console.log(err);
-            }),
-            cardsTemplate
-        }
-      }
-    });
-      return card.generate();
-  } 
+function likeCounterUpdate(card) {
+  if (card.isLiked()) {
+     api.deleteCardLike(card.id)
+      .then((cardData) => {
+        card.setLikes(cardData.likes)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  } else {
+     api.setCardLike(card.id)
+      .then((cardData) => {
+        card.setLikes(cardData.likes)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+}
 
-// function createCard(data) {
-//   const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
-//   return card.generate();
-// }
+function createCard(data) {
+  const card = new Card(data, userData, handleCardClick, cardsTemplate, cardSelectors, api, openPopupSubmit, likeCounterUpdate);
+  return card.generate();
+}
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
