@@ -62,7 +62,7 @@ class FormValidator {
     });
   }
 
-  updateButtonSubmit() {
+  disableSubmitButton() {
     this._button.setAttribute("disabled", "true");
     this._button.classList.add(this._selectors.buttonInvalid);
   }

@@ -101,13 +101,13 @@ avatarFormValidator.enableValidation();
 function openPopupEdit() {
   setInputEditFormValue();
   userFormValidator.resetErrors();
-  userFormValidator.updateButtonSubmit();
+  userFormValidator.disableSubmitButton();
   popupEdit.open();
 }
 
 function openPopupAdd() {
   cardFormValidator.resetErrors();
-  cardFormValidator.updateButtonSubmit();
+  cardFormValidator.disableSubmitButton();
   popupAdd.open();
 }
 
@@ -117,7 +117,7 @@ function openPopupVisual({ name, link }) {
 
 function openPopupEditAvatar() {
   avatarFormValidator.resetErrors();
-  avatarFormValidator.updateButtonSubmit();
+  avatarFormValidator.disableSubmitButton();
   popupEditAvatar.open();
 }
 
