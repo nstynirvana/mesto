@@ -61,6 +61,12 @@ class FormValidator {
       input.classList.remove(this._selectors.lineInvalid);
     });
   }
+
+  updateButtonSubmit() {
+    this._button.setAttribute("disabled", "true");
+    this._button.classList.add(this._selectors.buttonInvalid);
+  }
+
 }
 
 export default FormValidator;
