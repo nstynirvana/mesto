@@ -53,6 +53,7 @@ class Card {
 
   _createButtons() {
     const owner = this._data.owner || this._user;
+    this._likeButton = this._cardElement.querySelector(".element__like-button");
     this._deleteButton = this._cardElement.querySelector(".element__delete-button");
     if (this._user._id !== owner._id) {
       this._deleteButton.classList.add(".element__delete-button");
@@ -68,13 +69,14 @@ class Card {
     } else {
       this._likeButton.classList.add(this._cardSelectors.likeButtonActive);
     }
-    this._likeCounter = this._cardElement.querySelector(this._cardSelectors.likeCounter);
+    
     this._likeCounter.textContent = this._data.likes.length;
 
   }
 
   _addEventListeners() {
-    this._likeButton = this._cardElement.querySelector(".element__like-button");
+    this._likeCounter = this._cardElement.querySelector(this._cardSelectors.likeCounter);
+    
     this._likeButton.addEventListener("click", () => {
       this._likeCounterUpdate(this)
     });

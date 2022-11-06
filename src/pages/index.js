@@ -80,34 +80,32 @@ Promise.all([api.getUserInfo(), api.getAllCards()])
   })
   
 
-const UserFormValidator = new FormValidator(
+const userFormValidator = new FormValidator(
   validationSelectors,
   userEditForm
 );
-const CardFormValidator = new FormValidator(
+const cardFormValidator = new FormValidator(
   validationSelectors,
   cardCreateForm
 );
 
-const AvatarFormValidator = new FormValidator(
+const avatarFormValidator = new FormValidator(
   validationSelectors,
   editUserCardForm
 );
 
-UserFormValidator.enableValidation();
-CardFormValidator.enableValidation();
-AvatarFormValidator.enableValidation();
+userFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 function openPopupEdit() {
   setInputEditFormValue();
-  UserFormValidator.resetErrors();
-  UserFormValidator.resetFormErrors();
+  userFormValidator.resetErrors();
   popupEdit.open();
 }
 
 function openPopupAdd() {
-  CardFormValidator.resetErrors();
-  CardFormValidator.resetFormErrors();
+  cardFormValidator.resetErrors();
   popupAdd.open();
 }
 
@@ -116,7 +114,7 @@ function openPopupVisual({ name, link }) {
 }
 
 function openPopupEditAvatar() {
-  AvatarFormValidator.resetFormErrors();
+  avatarFormValidator.resetErrors();
   popupEditAvatar.open();
 }
 

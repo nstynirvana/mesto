@@ -14,9 +14,6 @@ class FormValidator {
     );
   }
   
-  resetFormErrors() {
-    this._form.reset();
-  }
   _handleFormSubmit(event) {
     event.preventDefault();
     this._checkValidity();

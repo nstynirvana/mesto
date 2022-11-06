@@ -21,10 +21,6 @@ class PopupWithSubmit extends Popup {
         this._cardId = cardId;
         super.open();
     }
-
-    close() {
-        super.close();
-    }
 }
 
 export default PopupWithSubmit;
