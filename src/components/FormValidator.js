@@ -47,8 +47,7 @@ class FormValidator {
       this._button.removeAttribute("disabled");
       this._button.classList.remove(this._selectors.buttonInvalid);
     } else {
-      this._button.setAttribute("disabled", "true");
-      this._button.classList.add(this._selectors.buttonInvalid);
+      this.disableSubmitButton();
     }
   }
 
